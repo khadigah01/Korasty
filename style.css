@@ -92,17 +92,27 @@ select:focus {
 
 /* Universal Hover Glow Rule for Everything */
 a:hover,
+button:hover,
+.lesson-card:hover,
+.book-card:hover,
+.game-card:hover,
+input:hover,
+textarea:hover,
+select:hover,
+.class-btn:hover,
+.subject-btn:hover,
 .partner-logo-card:hover,
 .certificate-badge:hover,
 .book-item-wrapper:hover,
 .tab-btn:hover,
 .level-badge:hover,
 .nav-pill:hover,
-.accent-card:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.65) !important;
-  border-color: rgba(139, 92, 246, 0.4) !important;
-  transition: all 0.3s ease-in-out;
+.accent-card:hover,
+[role="button"]:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.3), 0 0 25px 4px rgba(99, 102, 241, 0.45) !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* Hide Google Translate top bar frame */

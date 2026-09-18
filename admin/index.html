@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>لوحة المشرف السحابية كراستي | Admin Panel</title>
+    
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="antialiased selection:bg-indigo-100 text-slate-800" data-lang="ar">
+
+    <!-- Global Header -->
+    <header id="mainHeader" class="sticky top-0 z-50 bg-slate-900 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div id="brandContainer" class="flex items-center gap-3">
+                <a href="/index.html" class="text-4xl p-2 bg-white/10 hover:bg-white/20 rounded-2xl border border-white/20 transition-all">🔑</a>
+                <div>
+                    <h1 id="brandName" class="text-xl sm:text-2xl font-extrabold text-white flex items-center gap-2">
+                        <a href="/index.html" class="hover:underline">
+                            <span class="ar-text">لوحة تحكم كراستي السحابية</span>
+                            <span class="en-text hidden">Korasty Admin Hub</span>
+                        </a>
+                    </h1>
+                    <div class="flex flex-wrap items-center gap-2 mt-1">
+                        <span class="px-2 py-0.5 bg-yellow-400 text-slate-900 font-black text-[10px] tracking-wider rounded-md">Protected Panel</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="headerActions" class="flex items-center gap-3">
+                <a href="/index.html" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/15 rounded-xl transition-all">
+                    <span class="ar-text">🏠 الرئيسية</span>
+                    <span class="en-text hidden">🏠 Home</span>
+                </a>
+                <button id="langToggleBtn" onclick="toggleLanguage()" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/15 rounded-xl transition-all cursor-pointer">
+                    🌐 EN | عربي
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Passcode Protection View (Shows until validated) -->
+    <div id="adminLockScreen" class="max-w-md mx-auto mt-24 px-4">
+        <div class="bg-white border border-slate-100 shadow-xl rounded-3xl p-8 text-center flex flex-col gap-6">
+            <div class="w-16 h-16 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-3xl mx-auto font-bold shadow-sm">🔑</div>
+            <div>
+                <h2 class="text-xl font-black text-slate-800">
+                    <span class="ar-text">تسجيل الدخول للوحة المشرف</span>
+                    <span class="en-text hidden">Admin Dashboard Sign In</span>
+                </h2>
+                <p class="text-xs text-slate-500 mt-2">
+                    <span class="ar-text">يرجى إدخال كلمة المرور المخصصة للوصول إلى خيارات النشر والتحرير:</span>
+                    <span class="en-text hidden">Please enter the administrator passcode to access publish controls:</span>
+                </p>
+            </div>
+            <div class="flex flex-col gap-3">
+                <input type="password" id="adminPasswordInput" class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-center font-bold tracking-widest text-xl" placeholder="••••">
+                <button onclick="validateAdminPassword()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm rounded-xl transition-all shadow-md">
+                    <span class="ar-text">تأكيد الدخول السحابي</span>
+                    <span class="en-text hidden">Confirm Login</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Protected Admin Workspace (Hidden by default, shown upon passcode validation) -->
+    <div id="adminModal" class="max-w-5xl mx-auto px-4 py-8 hidden flex-col gap-8">
+        <!-- Live Quick Stats Ribbon -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-2xl font-bold">🏫</div>
+                <div>
+                    <span class="text-[11px] font-bold text-slate-400 block">
+                        <span class="ar-text">إجمالي الدروس</span>
+                        <span class="en-text hidden">Total Lessons</span>
+                    </span>
+                    <span id="adminTotalLessonsCount" class="text-xl font-black text-slate-800">0</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center text-2xl font-bold">📚</div>
+                <div>
+                    <span class="text-[11px] font-bold text-slate-400 block">
+                        <span class="ar-text">الكتب والملازم</span>
+                        <span class="en-text hidden">Books & PDFs</span>
+                    </span>
+                    <span id="adminTotalBooksCount" class="text-xl font-black text-slate-800">0</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl font-bold">💬</div>
+                <div>
+                    <span class="text-[11px] font-bold text-slate-400 block">
+                        <span class="ar-text">التعليقات</span>
+                        <span class="en-text hidden">Comments</span>
+                    </span>
+                    <span id="adminTotalCommentsCount" class="text-xl font-black text-slate-800">0</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl font-bold">⚡</div>
+                <div>
+                    <span class="text-[11px] font-bold text-slate-400 block">
+                        <span class="ar-text">حالة السحابة</span>
+                        <span class="en-text hidden">Cloud State</span>
+                    </span>
+                    <span id="adminDbStatusBadge" class="text-xs font-black text-emerald-600">متصل وجاهز ✔</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-lg border border-slate-100 overflow-hidden">
+            <div class="bg-indigo-600 p-6 text-white flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                <h2 class="text-lg font-extrabold flex items-center gap-2">
+                    <span>⚡</span>
+                    <span class="ar-text">لوحة إدارة وتحرير منصة كراستي الشاملة</span>
+                    <span class="en-text hidden">Korasty Central Administration Suite</span>
+                </h2>
+                <div class="flex items-center gap-2">
+                    <button onclick="restoreBuiltInContent()" class="px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+                        <span>🌱</span>
+                        <span class="ar-text">استعادة الدروس الافتراضية</span>
+                        <span class="en-text hidden">Restore Defaults</span>
+                    </button>
+                    <button onclick="lockAdminWorkspace()" class="px-3 py-1.5 bg-rose-500/80 hover:bg-rose-600 text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1">
+                        <span>🔒</span>
+                        <span class="ar-text">قفل اللوحة</span>
+                        <span class="en-text hidden">Lock</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-6">
+                <!-- Navigation Tabs inside Admin -->
+                <div class="flex flex-wrap border-b border-gray-100 mb-8 gap-2">
+                    <button onclick="switchAdminTab(0)" class="admin-tab active px-4 py-3 border-b-2 border-indigo-600 text-indigo-600 font-bold text-xs sm:text-sm cursor-pointer transition-all">
+                        <span class="ar-text">🏫 نشر درس جديد</span>
+                        <span class="en-text hidden">Add Lesson</span>
+                    </button>
+                    <button onclick="switchAdminTab(1)" class="admin-tab px-4 py-3 border-b-2 border-transparent text-slate-500 hover:text-indigo-600 font-semibold text-xs sm:text-sm cursor-pointer transition-all">
+                        <span class="ar-text">📋 إدارة الدروس المنشورة</span>
+                        <span class="en-text hidden">Manage Lessons</span>
+                    </button>
+                    <button onclick="switchAdminTab(2)" class="admin-tab px-4 py-3 border-b-2 border-transparent text-slate-500 hover:text-indigo-600 font-semibold text-xs sm:text-sm cursor-pointer transition-all">
+                        <span class="ar-text">📕 إدارة وإضافة كتب PDF</span>
+                        <span class="en-text hidden">PDF Books Hub</span>
+                    </button>
+                    <button onclick="switchAdminTab(3)" class="admin-tab px-4 py-3 border-b-2 border-transparent text-slate-500 hover:text-indigo-600 font-semibold text-xs sm:text-sm cursor-pointer transition-all">
+                        <span class="ar-text">📝 بنك أسئلة تحديد المستوى</span>
+                        <span class="en-text hidden">Placement Quiz Bank</span>
+                    </button>
+                    <button onclick="switchAdminTab(4)" class="admin-tab px-4 py-3 border-b-2 border-transparent text-slate-500 hover:text-indigo-600 font-semibold text-xs sm:text-sm cursor-pointer transition-all">
+                        <span class="ar-text">⚙️ المزامنة والنسخ الاحتياطي</span>
+                        <span class="en-text hidden">Sync & Backup</span>
+                    </button>
+                </div>
+
+                <!-- Tab 0: Publish Lesson -->
+                <div id="tab0" class="admin-content active flex flex-col gap-6">
+                    <form onsubmit="handleAddLesson(event)" class="flex flex-col gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-1.5">
+                                <label for="lessonTitleInput" class="text-xs font-bold text-slate-600">عنوان الدرس</label>
+                                <input type="text" id="lessonTitleInput" required class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm font-semibold" placeholder="مثال: تعلم الحروف العربية">
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label for="lessonIconInput" class="text-xs font-bold text-slate-600">رمز تعبيري (إيموجي)</label>
+                                <input type="text" id="lessonIconInput" value="📖" required class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm font-semibold">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label for="lessonVideoInput" class="text-xs font-bold text-slate-600">رابط فيديو Google Drive أو YouTube أو رابط منصة تعليمية</label>
+                            <input type="text" id="lessonVideoInput" class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm font-semibold" placeholder="https://drive.google.com/file/d/.../preview أو https://youtube.com/watch?v=...">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-1.5">
+                                <label for="lessonGradeInput" class="text-xs font-bold text-slate-600">الصف الدراسي</label>
+                                <select id="lessonGradeInput" class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm font-semibold bg-white">
+                                    <option value="الأول الابتدائي">الأول الابتدائي</option>
+                                    <option value="الثاني الابتدائي">الثاني الابتدائي</option>
+                                    <option value="الثالث الابتدائي">الثالث الابتدائي</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label for="lessonSubjectInput" class="text-xs font-bold text-slate-600">اللغة / المادة</label>
+                                <select id="lessonSubjectInput" class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm font-semibold bg-white">
+                                    <option value="عربي">اللغة العربية (عربي)</option>
+                                    <option value="إنجليزي">اللغة الإنجليزية (إنجليزي)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label for="lessonDescInput" class="text-xs font-bold text-slate-600">الوصف الموجز</label>
+                            <textarea id="lessonDescInput" required rows="2" class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm" placeholder="وصف موجز يظهر للطلاب في كروت تصفح الدروس..."></textarea>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label for="lessonContentInput" class="text-xs font-bold text-slate-600">محتوى الدرس المفصل (HTML مدعوم)</label>
+                            <textarea id="lessonContentInput" required rows="5" class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm" placeholder="اكتب الشرح ومفردات الدرس والأمثلة بالكامل هنا..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm rounded-xl shadow-md transition-all cursor-pointer mt-2 hover:scale-[1.01]">
+                            نشر الدرس السحابي فوراً 🚀
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Tab 1: Manage Lessons List -->
+                <div id="tab1" class="admin-content hidden flex flex-col gap-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="text-sm font-bold text-slate-700">قائمة جميع الدروس المنشورة في المنصة:</h4>
+                        <span class="text-xs text-slate-400 font-semibold">يمكنك مراجعة أو حذف أي درس بضغطة واحدة</span>
+                    </div>
+                    <div id="adminLessonsList" class="flex flex-col gap-3"></div>
+                </div>
+
+                <!-- Tab 2: Manage Books & PDFs -->
+                <div id="tab2" class="admin-content hidden flex flex-col gap-8">
+                    <!-- Add PDF Book Form -->
+                    <div class="bg-slate-50 border border-slate-100 p-6 rounded-2xl">
+                        <h3 class="text-base font-extrabold text-pink-600 mb-4 flex items-center gap-1.5">
+                            <span>📕</span>
+                            <span>إضافة ملف PDF أو ورقة عمل جديدة</span>
+                        </h3>
+                        <form onsubmit="handleAddBook(event)" class="flex flex-col gap-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="bookTitleInput" class="text-xs font-bold text-slate-600">عنوان الكتاب / ورقة العمل</label>
+                                    <input type="text" id="bookTitleInput" required class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl bg-white outline-none text-sm font-semibold" placeholder="كتاب تمارين الحروف أو مذكرة المنهج">
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="bookUrlInput" class="text-xs font-bold text-slate-600">رابط ملف PDF من Google Drive أو رابط مباشر</label>
+                                    <input type="text" id="bookUrlInput" required class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl bg-white outline-none text-sm font-semibold" placeholder="https://drive.google.com/file/d/.../preview">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="bookGradeInput" class="text-xs font-bold text-slate-600">الصف الدراسي</label>
+                                    <select id="bookGradeInput" class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl bg-white outline-none text-sm font-semibold">
+                                        <option value="جميع الصفوف">جميع الصفوف</option>
+                                        <option value="الأول الابتدائي">الأول الابتدائي</option>
+                                        <option value="الثاني الابتدائي">الثاني الابتدائي</option>
+                                        <option value="الثالث الابتدائي">الثالث الابتدائي</option>
+                                    </select>
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="bookIconInput" class="text-xs font-bold text-slate-600">رمز الكتاب التعبيري (إيموجي)</label>
+                                    <input type="text" id="bookIconInput" value="📕" required class="px-4 py-3 border border-slate-200 focus:border-indigo-500 rounded-xl bg-white outline-none text-sm font-semibold">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 bg-pink-600 hover:bg-pink-700 text-white font-extrabold text-sm rounded-xl shadow-md transition-all cursor-pointer hover:scale-[1.01]">
+                                نشر كتاب الـ PDF للمكتبة 📚
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Books Management Table -->
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-700 mb-3">الكتب والملازم المعروضة حالياً في المكتبة:</h4>
+                        <div id="adminBooksList" class="flex flex-col gap-3"></div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Placement Quiz Questions Bank -->
+                <div id="tab3" class="admin-content hidden flex flex-col gap-6">
+                    <div class="flex justify-between items-center bg-indigo-50/50 p-4 rounded-2xl border border-indigo-100">
+                        <div>
+                            <h4 class="text-sm font-bold text-indigo-900">بنك أسئلة اختبارات تحديد المستوى التفاعلي المدمج</h4>
+                            <p class="text-xs text-indigo-600 mt-1">يحتوي بنك الأسئلة المدمج على 24 سؤالاً تفاعلياً موزعاً على 3 مواد رئيسية (الإنجليزية، الرياضيات، واللغة العربية) مع نظام نقاط وشهادات فورية.</p>
+                        </div>
+                        <a href="/books/index.html#builtInLevelTestSection" target="_blank" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition-all flex items-center gap-1.5 shrink-0">
+                            <span>🎮</span>
+                            <span>تجربة الاختبار حياً</span>
+                        </a>
+                    </div>
+
+                    <div id="adminQuizBankInspector" class="flex flex-col gap-4">
+                        <!-- Rendered by script.js -->
+                    </div>
+                </div>
+
+                <!-- Tab 4: System Tools & Cloud Backup -->
+                <div id="tab4" class="admin-content hidden flex flex-col gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Cloud Sync Diagnostics -->
+                        <div class="bg-slate-50 border border-slate-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-sm font-extrabold text-slate-800 mb-2 flex items-center gap-2">
+                                    <span>🔄</span>
+                                    <span>مزامنة السحابة والتحقق من الاتصال</span>
+                                </h4>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                    إذا حدث انقطاع مؤقت في الإنترنت أو تذبذب في الاتصال السحابي، يمكنك إعادة محاولة المزامنة الفورية مع قاعدة بيانات Firestore بنقرة واحدة دون التأثير على المحتوى.
+                                </p>
+                            </div>
+                            <button onclick="forceCloudResync()" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-2">
+                                <span>🔄</span>
+                                <span>إعادة فحص ومزامنة الاتصال بالسحابة</span>
+                            </button>
+                        </div>
+
+                        <!-- Restore Built-in Defaults -->
+                        <div class="bg-emerald-50/60 border border-emerald-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-sm font-extrabold text-emerald-900 mb-2 flex items-center gap-2">
+                                    <span>🌱</span>
+                                    <span>استعادة المحتوى والدروس والكتب الافتراضية كاملة</span>
+                                </h4>
+                                <p class="text-xs text-emerald-800 leading-relaxed mb-4">
+                                    يقوم هذا الإجراء بإعادة شحن كافة الدروس المدرسية النموذجية، وكتب Flipbook، والأنشطة التفاعلية لكافة الصفوف الابتدائية فوراً.
+                                </p>
+                            </div>
+                            <button onclick="restoreBuiltInContent()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-2">
+                                <span>🌱</span>
+                                <span>استعادة الدروس والكتب الافتراضية كاملة</span>
+                            </button>
+                        </div>
+
+                        <!-- Export Backup -->
+                        <div class="bg-slate-50 border border-slate-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-sm font-extrabold text-slate-800 mb-2 flex items-center gap-2">
+                                    <span>📥</span>
+                                    <span>تصدير نسخة احتياطية من المحتوى (JSON)</span>
+                                </h4>
+                                <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                                    قم بتحميل نسخة احتياطية كاملة من جميع الدروس والكتب والتعليقات الحالية بصيغة JSON لحفظها على جهازك.
+                                </p>
+                            </div>
+                            <button onclick="exportAppData()" class="w-full py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-2">
+                                <span>📥</span>
+                                <span>تحميل ملف النسخة الاحتياطية (Export JSON)</span>
+                            </button>
+                        </div>
+
+                        <!-- Clear Cache -->
+                        <div class="bg-rose-50/60 border border-rose-200/70 p-5 rounded-2xl flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-sm font-extrabold text-rose-900 mb-2 flex items-center gap-2">
+                                    <span>🧹</span>
+                                    <span>تحديث الذاكرة المؤقتة للمتصفح</span>
+                                </h4>
+                                <p class="text-xs text-rose-800 leading-relaxed mb-4">
+                                    يقوم بإعادة قراءة البيانات النظيفة وتحديث كاش المتصفح لضمان ظهور أحدث النسخ المنشورة لجميع المستخدمين.
+                                </p>
+                            </div>
+                            <button onclick="resetLocalCache()" class="w-full py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl shadow-sm transition-all flex items-center justify-center gap-2">
+                                <span>🧹</span>
+                                <span>تنظيف وتحديث الذاكرة المحلية</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Translate Hidden Widget Container -->
+    <div id="google_translate_element" style="display: none !important;"></div>
+
+    <!-- Google Translate Script Loader -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ar',
+                includedLanguages: 'ar,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Custom Floating Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Load Module Controller -->
+    <script type="module" src="../script.js"></script>
+</body>
+</html>

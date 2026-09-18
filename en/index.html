@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>كراستي | منصة التعليم التفاعلي للأطفال</title>
+    <title>Korasty | Interactive Learning Platform for Kids</title>
     
     <!-- Preconnect Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,16 +14,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Custom Style Sheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
-<body class="antialiased selection:bg-indigo-100 text-slate-800" data-lang="ar">
+<body class="antialiased selection:bg-indigo-100 text-slate-800" data-lang="en">
 
     <!-- Domain Activation Header Alert Banner -->
     <div id="domainAlertBanner" class="w-full bg-slate-900 text-slate-100 text-xs py-2 px-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 border-b border-slate-800 relative z-50 text-center">
         <span class="inline-flex items-center gap-1">
             <span class="animate-pulse h-2 w-2 rounded-full bg-emerald-500"></span>
-            <span class="ar-text">تم تفعيل النطاق بنجاح:</span>
-            <span class="en-text hidden">Domain active:</span>
+            <span class="en-text font-medium">Domain active:</span>
             <strong class="underline decoration-amber-400 font-extrabold text-white ml-1">Korasty.dpdns.org</strong>
         </span>
         <span class="h-4 w-[1px] bg-slate-700 hidden sm:block"></span>
@@ -31,8 +30,7 @@
             <img src="https://img.shields.io/badge/DigitalPlat-Get%20a%20free%20domain%20from%20DigitalPlat.-111827?style=flat-square&logo=databricks&logoColor=93c5fd" alt="DigitalPlat Badge" class="h-5 rounded shadow-sm border border-slate-700" />
         </a>
         <a href="https://dashboard.digitalplat.org/signup?ref=seRKf8j6Tx" target="_blank" rel="noopener noreferrer" class="text-[11px] text-slate-300 hover:text-amber-300 font-bold transition-colors underline">
-            <span class="ar-text">احصل على نطاق مجاني متميز الآن ↗</span>
-            <span class="en-text hidden">Get your free premium domain here ↗</span>
+            <span class="en-text">Get your free premium domain here ↗</span>
         </a>
     </div>
 
@@ -40,11 +38,10 @@
     <header id="mainHeader" class="sticky top-0 z-50 bg-gradient-to-r from-indigo-600 via-indigo-700 to-pink-600 shadow-md">
         <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div id="brandContainer" class="flex items-center gap-3">
-                <span id="brandLogo" class="text-4xl p-2 bg-white/10 rounded-2xl border border-white/20">📚</span>
+                <a href="/en/index.html" class="text-4xl p-2 bg-white/10 hover:bg-white/20 rounded-2xl border border-white/20 transition-all">📚</a>
                 <div>
                     <h1 id="brandName" class="text-xl sm:text-2xl font-extrabold text-white flex items-center gap-2">
-                        <span class="ar-text">كراستي | لتعليم الأطفال</span>
-                        <span class="en-text hidden">Korasty Kids Project</span>
+                        <span>Korasty Kids Project</span>
                     </h1>
                     <div class="flex flex-wrap items-center gap-2 mt-1">
                         <span class="px-2 py-0.5 bg-yellow-400 text-slate-900 font-black text-[10px] tracking-wider rounded-md">Korasty.dpdns.org</span>
@@ -57,12 +54,11 @@
             
             <div id="headerActions" class="flex items-center gap-3">
                 <button id="langToggleBtn" onclick="toggleLanguage()" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/15 hover:border-white/25 rounded-xl transition-all cursor-pointer">
-                    🌐 EN | عربي
+                    🌐 العربية 🇪🇬
                 </button>
-                <a href="/admin/index.html" class="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white font-extrabold text-sm border border-pink-400 rounded-xl transition-all shadow-sm flex items-center gap-1.5">
+                <a href="/admin/en/index.html" class="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white font-extrabold text-sm border border-pink-400 rounded-xl transition-all shadow-sm flex items-center gap-1.5">
                     🔐 
-                    <span class="ar-text">لوحة المشرف</span>
-                    <span class="en-text hidden">Admin Studio</span>
+                    <span>Admin Studio</span>
                 </a>
             </div>
         </div>
@@ -72,29 +68,24 @@
     <div id="mainLayoutContainer" class="max-w-7xl mx-auto px-4 py-12 flex flex-col gap-12 animate-fade-in">
         
         <!-- Welcome Hero Banner -->
-        <article id="welcomeBanner" class="bg-gradient-to-r from-indigo-700 to-pink-600 rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-lg text-center sm:text-right">
+        <article id="welcomeBanner" class="bg-gradient-to-r from-indigo-700 to-pink-600 rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-lg text-left">
             <div class="relative z-10 max-w-2xl">
                 <h2 class="text-3xl sm:text-4xl font-black mb-4">
-                    <span class="ar-text">✨ مرحباً بك في منصة كراستي!</span>
-                    <span class="en-text hidden">✨ Welcome to Korasty Portal!</span>
+                    <span>✨ Welcome to Korasty Portal!</span>
                 </h2>
                 <p class="text-indigo-100 text-sm sm:text-base leading-relaxed mb-6">
-                    <span class="ar-text">مرحبا بك في بيئتك التعليمية التفاعلية الآمنة! نقوم بتسهيل دراسة الحروف، اللغات، القراءة، وحل الألغاز الذهنية عبر حصص سحابية تفاعلية وملفات PDF تلوين ممتازة.</span>
-                    <span class="en-text hidden">Explore a safe, gamified workspace crafted for early childhood primary students to learn Arabic, English, solve riddles, and download lessons.</span>
+                    <span>Explore a safe, gamified workspace crafted for early childhood primary students to learn Arabic, English, solve riddles, and download lessons.</span>
                 </p>
-                <div class="flex flex-wrap justify-center sm:justify-start gap-3">
-                    <a href="/lessons/index.html" class="px-6 py-3 bg-white text-indigo-700 font-extrabold text-xs sm:text-sm rounded-xl shadow-md hover:bg-slate-50 transition-all">
-                        <span class="ar-text">🏫 تصفح الحصص والدروس</span>
-                        <span class="en-text hidden">🏫 Explore Cloud Lessons</span>
+                <div class="flex flex-wrap justify-start gap-3">
+                    <a href="/lessons/en/index.html" class="px-6 py-3 bg-white text-indigo-700 font-extrabold text-xs sm:text-sm rounded-xl shadow-md hover:bg-slate-50 transition-all">
+                        <span>🏫 Explore Cloud Lessons</span>
                     </a>
-                    <a href="/games/index.html" class="px-6 py-3 bg-indigo-500 hover:bg-indigo-400 text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all">
-                        <span class="ar-text">🎮 العب وتحدّى الآن</span>
-                        <span class="en-text hidden">🎮 Play Games</span>
+                    <a href="/games/en/index.html" class="px-6 py-3 bg-indigo-500 hover:bg-indigo-400 text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all">
+                        <span>🎮 Play Games</span>
                     </a>
                     <a href="#builtInLevelTestSection" class="px-6 py-3 bg-pink-500 hover:bg-pink-400 text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all flex items-center gap-1.5 shadow-md">
                         <span>🎯</span>
-                        <span class="ar-text">اختبار تحديد المستوى</span>
-                        <span class="en-text hidden">Level Placement Test</span>
+                        <span>Level Placement Test</span>
                     </a>
                 </div>
             </div>
@@ -105,91 +96,77 @@
 
         <!-- Bento Grid Navigation Portal -->
         <section class="flex flex-col gap-6">
-            <div class="text-center sm:text-right">
+            <div class="text-left">
                 <h3 class="text-2xl font-black text-slate-800">
-                    <span class="ar-text">🗺️ خريطة التعلم والمرح</span>
-                    <span class="en-text hidden">🗺️ Your Learning Map</span>
+                    <span>🗺️ Your Learning Map</span>
                 </h3>
                 <p class="text-xs text-slate-500 mt-1">
-                    <span class="ar-text">اختر القسم الذي تريد الذهاب إليه وتصفحه بشكل كامل ومستقل:</span>
-                    <span class="en-text hidden">Choose any dedicated workspace to explore in complete layout:</span>
+                    <span>Choose any dedicated workspace to explore in complete layout:</span>
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-2">
                 <!-- Portal: Lessons -->
-                <a href="/lessons/index.html" class="group bg-white border border-slate-100 shadow-sm rounded-3xl p-6 hover:scale-[1.03] transition-all flex flex-col justify-between">
+                <a href="/lessons/en/index.html" class="group bg-white border border-slate-100 shadow-sm rounded-3xl p-6 hover:scale-[1.03] transition-all flex flex-col justify-between">
                     <div>
                         <span class="text-5xl block mb-4 group-hover:scale-110 transition-transform">🏫</span>
                         <h4 class="text-lg font-black text-slate-800 mb-2">
-                            <span class="ar-text">الدروس والحصص السحابية</span>
-                            <span class="en-text hidden">Cloud Schoolroom</span>
+                            <span>Cloud Schoolroom</span>
                         </h4>
                         <p class="text-xs text-slate-500 leading-relaxed mb-6">
-                            <span class="ar-text">تصفح الفيديوهات والشروحات التفاعلية، وصنّف الدروس بحسب صفك ومادتك الدراسية مع إبداء الإعجاب والتعليق!</span>
-                            <span class="en-text hidden">Watch interactive lessons, filter by primary grades, add comments and likes dynamically!</span>
+                            <span>Watch interactive lessons, filter by primary grades, add comments and likes dynamically!</span>
                         </p>
                     </div>
                     <div class="text-xs font-bold text-indigo-600 flex items-center gap-1">
-                        <span class="ar-text">دخول الفصل ➔</span>
-                        <span class="en-text hidden">Enter Schoolroom ➔</span>
+                        <span>Enter Schoolroom ➔</span>
                     </div>
                 </a>
 
                 <!-- Portal: Games -->
-                <a href="/games/index.html" class="group bg-white border border-slate-100 shadow-sm rounded-3xl p-6 hover:scale-[1.03] transition-all flex flex-col justify-between">
+                <a href="/games/en/index.html" class="group bg-white border border-slate-100 shadow-sm rounded-3xl p-6 hover:scale-[1.03] transition-all flex flex-col justify-between">
                     <div>
                         <span class="text-5xl block mb-4 group-hover:scale-110 transition-transform">🎮</span>
                         <h4 class="text-lg font-black text-slate-800 mb-2">
-                            <span class="ar-text">الألعاب الذهنية والذكاء</span>
-                            <span class="en-text hidden">Educational Play Hub</span>
+                            <span>Educational Play Hub</span>
                         </h4>
                         <p class="text-xs text-slate-500 leading-relaxed mb-6">
-                            <span class="ar-text">ساحة مليئة بالتحديات الفورية لتركيب ومطابقة الحروف وحل الأسئلة لكسب النقاط والنجوم الذهبية!</span>
-                            <span class="en-text hidden">Interactive letter-pairing, math flashcards, and star speed questions.</span>
+                            <span>Interactive letter-pairing, math flashcards, and star speed questions.</span>
                         </p>
                     </div>
                     <div class="text-xs font-bold text-emerald-600 flex items-center gap-1">
-                        <span class="ar-text">ابدأ اللعب الآن ➔</span>
-                        <span class="en-text hidden">Play Arcade ➔</span>
+                        <span>Play Arcade ➔</span>
                     </div>
                 </a>
 
                 <!-- Portal: Books -->
-                <a href="/books/index.html" class="group bg-white border border-slate-100 shadow-sm rounded-3xl p-6 hover:scale-[1.03] transition-all flex flex-col justify-between">
+                <a href="/books/en/index.html" class="group bg-white border border-slate-100 shadow-sm rounded-3xl p-6 hover:scale-[1.03] transition-all flex flex-col justify-between">
                     <div>
                         <span class="text-5xl block mb-4 group-hover:scale-110 transition-transform">📚</span>
                         <h4 class="text-lg font-black text-slate-800 mb-2">
-                            <span class="ar-text">مكتبة PDF واختبارات المستوى</span>
-                            <span class="en-text hidden">PDF Library Shelf</span>
+                            <span>PDF Library & Placement Tests</span>
                         </h4>
                         <p class="text-xs text-slate-500 leading-relaxed mb-6">
-                            <span class="ar-text">تنزيل مباشر للكتب المدرسية وأوراق العمل التلوينية بالإضافة لاختبارات كامبريدج لتحديد مستوى الأطفال!</span>
-                            <span class="en-text hidden">Download school PDFs, coloring notebooks, and take international English tests.</span>
+                            <span>Download school PDFs, coloring notebooks, and take interactive English and Math placement tests.</span>
                         </p>
                     </div>
                     <div class="text-xs font-bold text-pink-600 flex items-center gap-1">
-                        <span class="ar-text">تصفح المكتبة ➔</span>
-                        <span class="en-text hidden">Explore Shelf ➔</span>
+                        <span>Explore Shelf ➔</span>
                     </div>
                 </a>
 
                 <!-- Portal: Admin -->
-                <a href="/admin/index.html" class="group bg-slate-900 border border-slate-800 shadow-sm rounded-3xl p-6 hover:scale-[1.03] transition-all flex flex-col justify-between text-white">
+                <a href="/admin/en/index.html" class="group bg-slate-900 border border-slate-800 shadow-sm rounded-3xl p-6 hover:scale-[1.03] transition-all flex flex-col justify-between text-white">
                     <div>
                         <span class="text-5xl block mb-4 group-hover:scale-110 transition-transform">🔐</span>
                         <h4 class="text-lg font-black mb-2">
-                            <span class="ar-text">بوابة المشرف الخاصة</span>
-                            <span class="en-text hidden">Secure Admin Portal</span>
+                            <span>Secure Admin Portal</span>
                         </h4>
                         <p class="text-xs text-slate-400 leading-relaxed mb-6">
-                            <span class="ar-text">اللوحة الآمنة المحمية بكلمة المرور لإضافة دروس جديدة، ورفع ملفات PDF، ومتابعة الدروس المنشورة.</span>
-                            <span class="en-text hidden">Password-protected dashboard to upload resources, books, and delete items.</span>
+                            <span>Password-protected dashboard to upload resources, books, and manage content in real-time.</span>
                         </p>
                     </div>
                     <div class="text-xs font-bold text-yellow-400 flex items-center gap-1">
-                        <span class="ar-text">الدخول للمشرف ➔</span>
-                        <span class="en-text hidden">Enter Admin ➔</span>
+                        <span>Enter Admin ➔</span>
                     </div>
                 </a>
             </div>
@@ -197,16 +174,14 @@
 
         <!-- 🌟 Built-in Interactive Level Placement Test -->
         <section id="builtInLevelTestSection" class="bg-white border border-indigo-100 shadow-lg rounded-3xl p-6 sm:p-8 my-6 overflow-hidden relative">
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-indigo-50 pb-6 mb-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-indigo-50 pb-6 mb-6 text-left">
                 <div>
                     <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-50 text-indigo-700 text-xs font-black rounded-full mb-2">
                         <span>🎯</span>
-                        <span class="ar-text">اختبار تحديد المستوى المدمج الذكي</span>
-                        <span class="en-text hidden">Smart Built-in Placement Test</span>
+                        <span>Smart Built-in Placement Test</span>
                     </span>
                     <h3 class="text-xl sm:text-2xl font-black text-slate-800">
-                        <span class="ar-text">اختبر مستواك التفاعلي مع كراستي واحصل على شهادتك 🏅</span>
-                        <span class="en-text hidden">Interactive Placement Test & Instant Certificate 🏅</span>
+                        <span>Interactive Placement Test & Instant Certificate 🏅</span>
                     </h3>
                 </div>
 
@@ -216,10 +191,10 @@
                         <span>🇬🇧 English</span>
                     </button>
                     <button id="tab-btn-math" onclick="switchTestType('math')" class="tab-btn px-4 py-2 bg-white text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl text-xs font-bold transition-all cursor-pointer">
-                        <span>🔢 Math / حساب</span>
+                        <span>🔢 Math</span>
                     </button>
                     <button id="tab-btn-arabic" onclick="switchTestType('arabic')" class="tab-btn px-4 py-2 bg-white text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-xl text-xs font-bold transition-all cursor-pointer">
-                        <span>🦁 عربي / Arabic</span>
+                        <span>🦁 Arabic</span>
                     </button>
                 </div>
             </div>
@@ -230,34 +205,27 @@
                     <span>🎓</span>
                 </div>
                 <h4 class="text-lg sm:text-xl font-black text-slate-800 mb-3">
-                    <span class="ar-text">تقييم فوري مكون من 8 أسئلة تفاعلية وممتعة</span>
-                    <span class="en-text hidden">Instant 8-Question Assessment</span>
+                    <span>Instant 8-Question Assessment</span>
                 </h4>
-                <p id="quizStartDescAr" class="ar-text text-sm text-slate-600 leading-relaxed mb-6">
-                    مستعد لمعرفة مستواك في اللغة الإنجليزية؟ أجب على 8 أسئلة لغوية تفاعلية سريعة واحصل على تقييم وشهادة فورية!
-                </p>
-                <p id="quizStartDescEn" class="en-text hidden text-sm text-slate-600 leading-relaxed mb-6">
+                <p id="quizStartDescEn" class="text-sm text-slate-600 leading-relaxed mb-6">
                     Ready to check your English level? Answer 8 quick interactive language questions and receive your verified certificate level!
                 </p>
                 <button onclick="startBuiltInQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-indigo-600 to-pink-600 hover:from-indigo-700 hover:to-pink-700 text-white font-extrabold text-sm rounded-2xl shadow-lg hover:shadow-indigo-500/25 transition-all cursor-pointer hover:scale-105 flex items-center gap-2">
                     <span>🚀</span>
-                    <span class="ar-text">ابدأ الاختبار الفوري الآن</span>
-                    <span class="en-text hidden">Start Interactive Test Now</span>
+                    <span>Start Interactive Test Now</span>
                 </button>
             </div>
 
             <!-- Quiz Play State -->
-            <div id="quizPlayState" class="hidden flex flex-col gap-6 max-w-2xl mx-auto py-4">
+            <div id="quizPlayState" class="hidden flex flex-col gap-6 max-w-2xl mx-auto py-4 text-left">
                 <div class="flex items-center justify-between bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-2xl text-xs font-bold text-slate-700">
                     <div class="flex items-center gap-2">
-                        <span class="ar-text">السؤال:</span>
-                        <span class="en-text hidden">Question:</span>
+                        <span>Question:</span>
                         <span id="quizCurrentProgress" class="text-indigo-600 font-extrabold text-sm">1</span>
                         <span>/ 8</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="ar-text">النقاط:</span>
-                        <span class="en-text hidden">Score:</span>
+                        <span>Score:</span>
                         <span id="quizCurrentScore" class="text-emerald-600 font-extrabold text-sm">0</span>
                         <span>⭐</span>
                     </div>
@@ -266,7 +234,7 @@
                 <div class="bg-indigo-50/50 border border-indigo-100 rounded-3xl p-6 sm:p-8 text-center flex flex-col items-center gap-4">
                     <span id="quizQuestionEmoji" class="text-6xl animate-bounce">🦁</span>
                     <h4 id="quizQuestionText" class="text-base sm:text-lg font-black text-slate-800 max-w-lg leading-relaxed">
-                        السؤال سيظهر هنا...
+                        Question will appear here...
                     </h4>
                 </div>
 
@@ -281,8 +249,7 @@
                     <span>🏆</span>
                 </div>
                 <h4 class="text-2xl font-black text-slate-800 mb-1">
-                    <span class="ar-text">مبارك! أكملت الاختبار بنجاح</span>
-                    <span class="en-text hidden">Congratulations! Assessment Complete</span>
+                    <span>Congratulations! Assessment Complete</span>
                 </h4>
                 <p id="quizCertType" class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-4">
                     Certificate of English Proficiency
@@ -291,25 +258,23 @@
                 <!-- Certificate Display Card -->
                 <div class="w-full bg-gradient-to-br from-indigo-50 to-pink-50 border-2 border-indigo-200 rounded-3xl p-6 mb-6 shadow-sm text-center">
                     <div class="text-xs font-bold text-slate-500 mb-1">
-                        <span class="ar-text">نتيجتك النهائية:</span>
-                        <span class="en-text hidden">Final Score:</span>
+                        <span>Final Score:</span>
                     </div>
                     <div class="text-3xl font-black text-indigo-700 mb-3">
                         <span id="quizFinalScore">8</span> / 8
                     </div>
                     <div id="quizLevelBadge" class="inline-block px-4 py-2 bg-indigo-600 text-white text-xs sm:text-sm font-extrabold rounded-xl shadow-md mb-3">
-                        متوسط (Intermediate B1) 🏆
+                        Intermediate (B1) 🏆
                     </div>
                     <p id="quizLevelDesc" class="text-xs text-slate-600 leading-relaxed font-semibold">
-                        تقييم مستواك وتوجيهات التطوير...
+                        Assessment result and developmental tips...
                     </p>
                 </div>
 
                 <div class="flex items-center gap-3">
                     <button onclick="resetBuiltInQuiz()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs rounded-xl shadow-md transition-all cursor-pointer flex items-center gap-2">
                         <span>🔄</span>
-                        <span class="ar-text">إعادة الاختبار أو اختيار مادة أخرى</span>
-                        <span class="en-text hidden">Retake Test or Choose Another Subject</span>
+                        <span>Retake Test or Choose Another Subject</span>
                     </button>
                 </div>
             </div>
@@ -317,28 +282,24 @@
 
         <!-- 🚀 Egyptian Ministry of Education & Altfwok External Resource Directory -->
         <section id="egyptianEducationalHub" class="bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 border border-indigo-500/15 rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
-            <div class="absolute top-3 left-3 bg-indigo-500/10 text-indigo-300 border border-indigo-500/10 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
-                <span class="ar-text">دليل خارجي 🇪🇬</span>
-                <span class="en-text hidden">External Directory 🇪🇬</span>
+            <div class="absolute top-3 right-3 bg-indigo-500/10 text-indigo-300 border border-indigo-500/10 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                <span>External Directory 🇪🇬</span>
             </div>
-            <div class="relative z-10">
+            <div class="relative z-10 text-left">
                 <div class="flex items-center gap-3 mb-4">
                     <span class="text-3xl sm:text-4xl">📚</span>
                     <div>
                         <h3 class="text-lg sm:text-xl font-extrabold text-white">
-                            <span class="ar-text">بوابة الكتب والمصادر التعليمية الخارجية</span>
-                            <span class="en-text hidden">Educational Books & External Portals</span>
+                            <span>Educational Books & External Portals</span>
                         </h3>
                         <p class="text-xs text-indigo-300 font-semibold">
-                            <span class="ar-text">تصفح وتحميل الملازم والكتب المدرسية الرسمية PDF مباشرة</span>
-                            <span class="en-text hidden">Direct access to external textbooks and notes library</span>
+                            <span>Direct access to external textbooks and notes library</span>
                         </p>
                     </div>
                 </div>
 
                 <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 max-w-2xl">
-                    <span class="ar-text">نجمع لكم في هذا القسم باقة من أبرز الروابط والمكتبات الخارجية الموصى بها مثل بوابة المناهج الرسمية لوزارة التربية والتعليم ومنصة التفوق لمساعدتكم في الوصول إلى أحدث الكتب الدراسية والملخصات المفيدة.</span>
-                    <span class="en-text hidden">We have curated a useful directory of recommended external educational resources like the Egyptian Ministry of Education Portal and the Altfwok directory to help you find textbooks and worksheets easily.</span>
+                    <span>We have curated a useful directory of recommended external educational resources like the Egyptian Ministry of Education Portal and the Altfwok directory to help you find textbooks and worksheets easily.</span>
                 </p>
 
                 <!-- Action Link Buttons Grid -->
@@ -346,26 +307,22 @@
                     <!-- MOE Link -->
                     <a href="https://studentbooks.moe.gov.eg" target="_blank" class="flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs rounded-xl shadow-md transition-all border border-indigo-500/30 hover:scale-102">
                         <span>🏫</span>
-                        <span class="ar-text">الكتب المدرسية الرسمية</span>
-                        <span class="en-text hidden">Official School Textbooks</span>
+                        <span>Official School Textbooks</span>
                     </a>
                     <!-- Altfwok Web -->
                     <a href="https://altfwok.com" target="_blank" class="flex items-center justify-center gap-2 px-4 py-3 bg-slate-800 hover:bg-slate-700 text-indigo-400 font-extrabold text-xs rounded-xl shadow-md transition-all border border-indigo-500/10 hover:scale-102">
                         <span>🌐</span>
-                        <span class="ar-text">موقع التفوق التعليمي</span>
-                        <span class="en-text hidden">Altfwok Portal Web</span>
+                        <span>Altfwok Portal Web</span>
                     </a>
                     <!-- Telegram Channel -->
                     <a href="https://t.me/altfwok" target="_blank" class="flex items-center justify-center gap-2 px-4 py-3 bg-sky-600 hover:bg-sky-700 text-white font-extrabold text-xs rounded-xl shadow-md transition-all border border-sky-500/30 hover:scale-102">
                         <span>📢</span>
-                        <span class="ar-text">قناة التفوق تليجرام</span>
-                        <span class="en-text hidden">Telegram Community</span>
+                        <span>Telegram Community</span>
                     </a>
                     <!-- Advertise booking -->
                     <a href="https://telega.io/c/altfwok" target="_blank" class="flex items-center justify-center gap-2 px-4 py-3 bg-pink-600 hover:bg-pink-700 text-white font-extrabold text-xs rounded-xl shadow-md transition-all border border-pink-500/30 hover:scale-102">
                         <span>🎯</span>
-                        <span class="ar-text">مساحات الدعاية الخارجية</span>
-                        <span class="en-text hidden">External Ad Booking</span>
+                        <span>External Ad Booking</span>
                     </a>
                 </div>
             </div>
@@ -379,7 +336,7 @@
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
-                pageLanguage: 'ar',
+                pageLanguage: 'en',
                 includedLanguages: 'ar,en',
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
@@ -392,6 +349,6 @@
     <div id="toastContainer" class="toast-container"></div>
 
     <!-- Load Module Controller -->
-    <script type="module" src="script.js"></script>
+    <script type="module" src="/script.js"></script>
 </body>
 </html>

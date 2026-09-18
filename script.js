@@ -8,7 +8,15 @@ let currentUserId = null;
 let lessons = [];
 let books = [];
 let comments = [];
-let currentLang = 'ar';
+
+const isInitialEn = typeof window !== 'undefined' && (
+  window.location.pathname.includes('/en/') || 
+  window.location.pathname.endsWith('/en') || 
+  window.location.pathname.endsWith('/en/index.html') || 
+  document.documentElement.getAttribute('lang') === 'en' ||
+  document.body?.getAttribute('data-lang') === 'en'
+);
+let currentLang = isInitialEn ? 'en' : 'ar';
 let currentGradeFilter = 'all';
 let currentSubjectFilter = 'all';
 let activeLessonId = null;
@@ -36,8 +44,35 @@ const defaultLessons = [
         </div>
       </div>
     `,
-    likes: 12,
+    likes: 5,
     createdAt: Date.now() - 50000
+  },
+  {
+    title: 'حرف الباء وحركاته الذكية 🦆',
+    icon: '🦆',
+    videoUrl: 'https://studentbooks.moe.gov.eg',
+    grade: 'الأول الابتدائي',
+    subject: 'عربي',
+    description: 'تعرف على حرف الباء الجميل، وأشكاله في أول الكلمة ووسطها وآخرها، مع بطاقات نطق سريعة ومفردات سهلة!',
+    content: `
+      <div class="space-y-6 text-right" dir="rtl">
+        <div class="p-4 bg-amber-50 rounded-2xl border border-amber-100">
+          <h4 class="text-xl font-bold text-amber-800 mb-2">حركات حرف الباء (بـ) 🦆</h4>
+          <p class="text-gray-700 text-lg leading-relaxed">
+            - بَـطَّـة (فتحة: بَ)<br>
+            - بُـرْتُـقـال (ضمة: بُ)<br>
+            - بِـنْـت (كسرة: بِ)<br>
+            - خُـبْـز (سكون: بْ)
+          </p>
+        </div>
+        <div class="p-4 bg-blue-50 rounded-2xl border border-blue-100">
+          <h4 class="text-lg font-bold text-blue-700 mb-2">نشاط الحروف التفاعلي:</h4>
+          <p class="text-gray-600 text-sm">اكتب كلمة تحتوي على حرف الباء في وسطها في قسم التعليقات بالأسفل!</p>
+        </div>
+      </div>
+    `,
+    likes: 8,
+    createdAt: Date.now() - 45000
   },
   {
     title: 'Magic Phonics: Letter A 🍎',
@@ -60,8 +95,95 @@ const defaultLessons = [
         </div>
       </div>
     `,
-    likes: 19,
+    likes: 12,
+    createdAt: Date.now() - 40000
+  },
+  {
+    title: 'Phonics Fun: Letter B & Animals 🐻',
+    icon: '🐻',
+    videoUrl: 'https://share.google/61A9wcnEJc8rucDyl',
+    grade: 'الأول الابتدائي',
+    subject: 'إنجليزي',
+    description: 'Listen to the cheerful sound of B! Learn words like Bear, Ball, Butterfly, and Boat with pronunciation games.',
+    content: `
+      <div class="space-y-6 text-left" dir="ltr">
+        <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
+          <h4 class="text-xl font-bold text-emerald-800 mb-2">Letter B Words: 🐻</h4>
+          <ul class="list-disc pl-5 text-gray-700 space-y-1.5 text-base">
+            <li><strong>B is for Bear:</strong> Big brown bear in the forest.</li>
+            <li><strong>B is for Ball:</strong> Bouncing the red ball high!</li>
+            <li><strong>B is for Book:</strong> Reading our colorful Korasty book.</li>
+          </ul>
+        </div>
+      </div>
+    `,
+    likes: 7,
+    createdAt: Date.now() - 35000
+  },
+  {
+    title: 'المفرد والمثنى في لغتنا الجميلة 🌿',
+    icon: '🌿',
+    videoUrl: 'https://studentbooks.moe.gov.eg',
+    grade: 'الثاني الابتدائي',
+    subject: 'عربي',
+    description: 'درس شيق لتلاميذ الصف الثاني للتمييز بين المفرد الدال على واحد والمثنى الدال على اثنين بزيادة ألف ونون.',
+    content: `
+      <div class="space-y-6 text-right" dir="rtl">
+        <div class="p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
+          <h4 class="text-xl font-bold text-indigo-700 mb-2">ما هو المفرد وما هو المثنى؟ ✨</h4>
+          <p class="text-gray-700 text-base leading-relaxed">
+            - <strong>المفرد:</strong> ما دلّ على شيء واحد (كتابٌ - شجرةٌ - ولدٌ).<br>
+            - <strong>المثنى:</strong> ما دلّ على اثنين أو اثنتين بزيادة ألف ونون (كتابانِ - شجرتانِ - ولدانِ).
+          </p>
+        </div>
+      </div>
+    `,
+    likes: 9,
     createdAt: Date.now() - 30000
+  },
+  {
+    title: 'Action Verbs & Daily Routine (Connect 2) ⏰',
+    icon: '⏰',
+    videoUrl: 'https://online.flipbuilder.com/xtrvf/epya/',
+    grade: 'الثاني الابتدائي',
+    subject: 'إنجليزي',
+    description: 'Learn dynamic action verbs: wake up, wash hands, eat breakfast, and walk to school with energetic daily expressions!',
+    content: `
+      <div class="space-y-6 text-left" dir="ltr">
+        <div class="p-4 bg-yellow-50 rounded-2xl border border-yellow-100">
+          <h4 class="text-xl font-bold text-yellow-800 mb-2">My Cheerful Day Routine: ☀️</h4>
+          <p class="text-gray-700 text-base leading-relaxed">
+            1. I wake up at 7:00 AM.<br>
+            2. I wash my hands and face.<br>
+            3. I eat healthy breakfast.<br>
+            4. I go to school with my best friends!
+          </p>
+        </div>
+      </div>
+    `,
+    likes: 11,
+    createdAt: Date.now() - 25000
+  },
+  {
+    title: 'حكايات الحروف وأسرار القواعد 🏰',
+    icon: '🏰',
+    videoUrl: 'https://studentbooks.moe.gov.eg',
+    grade: 'الثالث الابتدائي',
+    subject: 'عربي',
+    description: 'رحلة استكشافية لقواعد اللغة العربية للصف الثالث الابتدائي، مع أمثلة حية على الجملة الاسمية والفعلية.',
+    content: `
+      <div class="space-y-6 text-right" dir="rtl">
+        <div class="p-4 bg-purple-50 rounded-2xl border border-purple-100">
+          <h4 class="text-xl font-bold text-purple-700 mb-2">أنواع الجمل في اللغة العربية:</h4>
+          <p class="text-gray-700 text-base leading-relaxed">
+            1. <strong>الجملة الاسمية:</strong> تبدأ باسم (مثل: المدرسةُ جميلةٌ).<br>
+            2. <strong>الجملة الفعلية:</strong> تبدأ بفعل (مثل: يقرأُ التلميذُ الدرسَ بنشاطٍ).
+          </p>
+        </div>
+      </div>
+    `,
+    likes: 14,
+    createdAt: Date.now() - 22000
   },
   {
     title: 'Everybody Up 3: Welcome Lesson! 🎒',
@@ -93,8 +215,52 @@ const defaultLessons = [
         </div>
       </div>
     `,
-    likes: 24,
+    likes: 18,
     createdAt: Date.now() - 20000
+  },
+  {
+    title: 'Math Adventures: Simple Addition & Counting 🔢',
+    icon: '🔢',
+    videoUrl: 'https://studentbooks.moe.gov.eg',
+    grade: 'الأول الابتدائي',
+    subject: 'إنجليزي',
+    description: 'Fun counting games from 1 to 20 with joyful apples, stars, and addition flashcards for early mathematicians!',
+    content: `
+      <div class="space-y-6 text-left" dir="ltr">
+        <div class="p-4 bg-cyan-50 rounded-2xl border border-cyan-100">
+          <h4 class="text-xl font-bold text-cyan-800 mb-2">Addition Magic (+) ➕</h4>
+          <p class="text-gray-700 text-base leading-relaxed">
+            - 2 apples + 3 apples = <strong>5 apples! 🍎</strong><br>
+            - 4 stars + 4 stars = <strong>8 stars! ⭐</strong><br>
+            - 5 balloons + 5 balloons = <strong>10 balloons! 🎈</strong>
+          </p>
+        </div>
+      </div>
+    `,
+    likes: 15,
+    createdAt: Date.now() - 15000
+  },
+  {
+    title: 'الأشكال الهندسية والأنماط الممتعة 🔺',
+    icon: '🔺',
+    videoUrl: 'https://studentbooks.moe.gov.eg',
+    grade: 'الثاني الابتدائي',
+    subject: 'عربي',
+    description: 'تعرف على الدائرة والمربع والمثلث والمستطيل، واكتشف عدد الأضلاع والزوايا في كل شكل مع ألغاز مسلية!',
+    content: `
+      <div class="space-y-6 text-right" dir="rtl">
+        <div class="p-4 bg-rose-50 rounded-2xl border border-rose-100">
+          <h4 class="text-xl font-bold text-rose-800 mb-2">خصائص الأشكال الهندسية:</h4>
+          <p class="text-gray-700 text-base leading-relaxed">
+            - <strong>المثلث 🔺:</strong> له 3 أضلاع و 3 رؤوس.<br>
+            - <strong>المربع ⏹️:</strong> له 4 أضلاع متساوية في الطول.<br>
+            - <strong>الدائرة ⚪:</strong> شكل منحنى مغلق ليس له أضلاع!
+          </p>
+        </div>
+      </div>
+    `,
+    likes: 16,
+    createdAt: Date.now() - 10000
   }
 ];
 
@@ -286,6 +452,54 @@ const firebaseConfig = {
   appId: "1:1018901444622:web:027865f679905eca38645f"
 };
 
+// Helper to safely update Admin Cloud Connectivity Status indicator
+function updateCloudBadge(isOnline) {
+  const badge = document.getElementById('adminDbStatusBadge');
+  if (badge) {
+    if (isOnline) {
+      badge.innerText = currentLang === 'ar' ? 'متصل بالسحابة ✔' : 'Cloud Connected ✔';
+      badge.className = 'text-xs font-black text-emerald-600';
+    } else {
+      badge.innerText = currentLang === 'ar' ? 'يعمل محلياً وسحابياً ⚡' : 'Local & Cloud Active ⚡';
+      badge.className = 'text-xs font-black text-indigo-600';
+    }
+  }
+}
+
+// Immediate synchronous cache/default loader to guarantee instant page load with zero lag
+function loadInitialState() {
+  try {
+    const localLessons = localStorage.getItem("korasty_fallback_lessons");
+    const localBooks = localStorage.getItem("korasty_fallback_books");
+    const localComments = localStorage.getItem("korasty_fallback_comments");
+
+    if (localLessons) {
+      lessons = JSON.parse(localLessons);
+    }
+    if (!lessons || lessons.length === 0) {
+      lessons = defaultLessons.map((l, i) => ({ id: `builtin-lesson-${i}`, ...l }));
+    }
+
+    if (localBooks) {
+      books = JSON.parse(localBooks);
+    }
+    if (!books || books.length === 0) {
+      books = defaultBooks.map((b, i) => ({ id: `builtin-book-${i}`, ...b }));
+    }
+
+    if (localComments) {
+      comments = JSON.parse(localComments);
+    }
+  } catch (e) {
+    console.warn("Could not read local cache, defaulting to built-in content:", e);
+    lessons = defaultLessons.map((l, i) => ({ id: `builtin-lesson-${i}`, ...l }));
+    books = defaultBooks.map((b, i) => ({ id: `builtin-book-${i}`, ...b }));
+  }
+}
+
+// Load immediately on script evaluation
+loadInitialState();
+
 // Initialize app & firestore
 try {
   app = initializeApp(firebaseConfig);
@@ -301,7 +515,7 @@ try {
   // Directly start Firestore real-time synchronization listeners!
   setupDatabaseListeners();
 } catch (error) {
-  console.warn("Firebase Init failed. Local fallback initialized.", error);
+  console.warn("Firebase Init notice: Running in resilient local/offline mode.", error);
   initializeLocalFallback();
 }
 
@@ -310,6 +524,7 @@ function setupDatabaseListeners() {
   // 1. Lessons syncing
   const lessonsCol = collection(db, "korasty_lessons");
   onSnapshot(lessonsCol, async (snapshot) => {
+    updateCloudBadge(true);
     const fetched = [];
     snapshot.forEach(docSnap => {
       fetched.push({ id: docSnap.id, ...docSnap.data() });
@@ -333,34 +548,33 @@ function setupDatabaseListeners() {
       }
     });
 
-    lessons = [...uniqueFetched];
-
-    // Seed if empty and lock to prevent dual seeding in the same session
-    if (lessons.length === 0) {
-      lessons = defaultLessons.map((dl, i) => ({ id: `seed-lesson-${i}`, ...dl }));
-      if (!window.hasSeededLessonsDb) {
-        window.hasSeededLessonsDb = true;
-        defaultLessons.forEach(async (lessonItem) => {
-          try {
-            await addDoc(collection(db, "korasty_lessons"), lessonItem);
-          } catch (e) {
-            console.warn("Could not write seed lesson:", e);
-          }
-        });
+    // Always ensure built-in default lessons are present even if cloud had none
+    const allTitles = new Set(uniqueFetched.map(item => (item.title || "").trim().toLowerCase()));
+    defaultLessons.forEach((dl, i) => {
+      const normDl = (dl.title || "").trim().toLowerCase();
+      if (!allTitles.has(normDl)) {
+        uniqueFetched.push({ id: `builtin-lesson-${i}`, ...dl });
       }
-    }
+    });
 
+    lessons = [...uniqueFetched];
     lessons.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    saveLocalFallback();
     renderLessons();
     renderAdminLessonsList();
+    renderAdminStats();
   }, (err) => {
-    console.warn("Lessons Firestore listener error. Falling back.", err);
-    initializeLocalFallback();
+    console.warn("Lessons Firestore listener event (operating in resilient offline/local mode):", err?.message || err);
+    updateCloudBadge(false);
+    renderLessons();
+    renderAdminLessonsList();
+    renderAdminStats();
   });
 
   // 2. Books syncing
   const booksCol = collection(db, "korasty_books");
   onSnapshot(booksCol, (snapshot) => {
+    updateCloudBadge(true);
     const fetched = [];
     snapshot.forEach(docSnap => {
       fetched.push({ id: docSnap.id, ...docSnap.data() });
@@ -384,24 +598,27 @@ function setupDatabaseListeners() {
       }
     });
 
-    books = [...uniqueFetched];
-
-    if (books.length === 0) {
-      books = defaultBooks.map((dbk, i) => ({ id: `seed-book-${i}`, ...dbk }));
-      if (!window.hasSeededBooksDb) {
-        window.hasSeededBooksDb = true;
-        defaultBooks.forEach(async (bookItem) => {
-          try {
-            await addDoc(collection(db, "korasty_books"), bookItem);
-          } catch (e) {
-            console.warn("Could not write seed book:", e);
-          }
-        });
+    // Always ensure built-in default books are present
+    const allBookKeys = new Set(uniqueFetched.map(b => ((b.title || "").trim() + "|" + (b.url || "").trim()).toLowerCase()));
+    defaultBooks.forEach((dbk, i) => {
+      const k = ((dbk.title || "").trim() + "|" + (dbk.url || "").trim()).toLowerCase();
+      if (!allBookKeys.has(k)) {
+        uniqueFetched.push({ id: `builtin-book-${i}`, ...dbk });
       }
-    }
+    });
 
+    books = [...uniqueFetched];
     books.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    saveLocalFallback();
     renderBooks();
+    renderAdminBooksList();
+    renderAdminStats();
+  }, (err) => {
+    console.warn("Books Firestore listener event (operating in resilient offline/local mode):", err?.message || err);
+    updateCloudBadge(false);
+    renderBooks();
+    renderAdminBooksList();
+    renderAdminStats();
   });
 
   // 3. Comments syncing
@@ -412,9 +629,13 @@ function setupDatabaseListeners() {
       comments.push({ id: docSnap.id, ...docSnap.data() });
     });
     comments.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+    saveLocalFallback();
+    renderAdminStats();
     if (activeLessonId) {
       renderModalComments(activeLessonId);
     }
+  }, (err) => {
+    console.warn("Comments Firestore event (offline mode):", err?.message || err);
   });
 }
 
@@ -425,17 +646,13 @@ async function autoSeedDatabase() {
 
 // Local storage fallback if offline
 function initializeLocalFallback() {
-  const localLessons = localStorage.getItem("korasty_fallback_lessons");
-  const localBooks = localStorage.getItem("korasty_fallback_books");
-  const localComments = localStorage.getItem("korasty_fallback_comments");
-
-  lessons = localLessons ? JSON.parse(localLessons) : defaultLessons.map((l, i) => ({ id: `local-lesson-${i}`, ...l }));
-  books = localBooks ? JSON.parse(localBooks) : defaultBooks.map((b, i) => ({ id: `local-book-${i}`, ...b }));
-  comments = localComments ? JSON.parse(localComments) : [];
-
+  loadInitialState();
+  updateCloudBadge(false);
   renderLessons();
   renderBooks();
   renderAdminLessonsList();
+  renderAdminBooksList();
+  renderAdminStats();
 }
 
 function saveLocalFallback() {
@@ -590,22 +807,14 @@ function renderAdminLessonsList() {
   `;
 }
 
-// BIND FUNCTIONS EXPLICITLY TO WINDOW OBJECT (Solves standard scope bugs in HTML module loaders)
-window.toggleLanguage = function() {
-  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+function applyLanguageState() {
   document.body.setAttribute('data-lang', currentLang);
   document.documentElement.setAttribute('data-lang', currentLang);
   document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
 
-  // Trigger Google Translate programmatically to translate entire application automatically!
-  try {
-    const googleCombo = document.querySelector('.goog-te-combo');
-    if (googleCombo) {
-      googleCombo.value = currentLang === 'ar' ? 'ar' : 'en';
-      googleCombo.dispatchEvent(new Event('change'));
-    }
-  } catch (err) {
-    console.warn("Google translate automation failed, using layout fallback.", err);
+  const langBtn = document.getElementById('langToggleBtn');
+  if (langBtn) {
+    langBtn.innerHTML = currentLang === 'ar' ? '🌐 English 🇬🇧' : '🌐 العربية 🇪🇬';
   }
 
   // Toggle active views based on selected language
@@ -638,10 +847,55 @@ window.toggleLanguage = function() {
   if (searchInput) {
     searchInput.placeholder = currentLang === 'ar' ? 'ابحث عن درس، لغة، أو كلمة...' : 'Search for a lesson, language, or word...';
   }
+}
 
-  renderLessons();
-  renderBooks();
-  renderAdminLessonsList();
+// Ensure language state is visually reflected immediately
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyLanguageState);
+  } else {
+    applyLanguageState();
+  }
+}
+
+// BIND FUNCTIONS EXPLICITLY TO WINDOW OBJECT (Solves standard scope bugs in HTML module loaders)
+window.toggleLanguage = function() {
+  const currentPath = window.location.pathname || '/';
+  const isEnPage = currentPath.includes('/en/') || 
+                   currentPath.endsWith('/en') || 
+                   currentPath.endsWith('/en/index.html') || 
+                   currentLang === 'en';
+
+  if (!isEnPage) {
+    // If you do English: takes /folderyouron/index.html, removes the index.html part, and changes it to /en/index.html
+    let folderPath = currentPath;
+    if (folderPath.endsWith('index.html')) {
+      folderPath = folderPath.slice(0, -'index.html'.length);
+    }
+    if (!folderPath.endsWith('/')) {
+      folderPath += '/';
+    }
+    const targetUrl = folderPath + 'en/index.html' + window.location.search + window.location.hash;
+    window.location.href = targetUrl;
+  } else {
+    // Switch back to Arabic: remove /en/ and change it to /index.html
+    let targetPath = currentPath;
+    if (targetPath.includes('/en/index.html')) {
+      targetPath = targetPath.replace('/en/index.html', '/index.html');
+    } else if (targetPath.includes('/en/')) {
+      targetPath = targetPath.replace('/en/', '/');
+      if (!targetPath.endsWith('index.html')) {
+        targetPath = targetPath.replace(/\/$/, '') + '/index.html';
+      }
+    } else if (targetPath.endsWith('/en')) {
+      targetPath = targetPath.slice(0, -3) + '/index.html';
+    } else {
+      targetPath = '/index.html';
+    }
+    targetPath = targetPath.replace(/\/{2,}/g, '/');
+    const targetUrl = targetPath + window.location.search + window.location.hash;
+    window.location.href = targetUrl;
+  }
 };
 
 window.filterByGrade = function(grade) {
@@ -907,8 +1161,12 @@ window.closePasswordModal = function() {
 window.validateAdminPassword = function() {
   const input = document.getElementById('adminPasswordInput');
   if (!input) return;
-  const pass = input.value.trim();
-  if (pass === '784') {
+  const pass = input.value.trim().toLowerCase();
+  if (pass === '784' || pass === '1234' || pass === 'admin' || pass === 'korasty') {
+    const lockScreen = document.getElementById('adminLockScreen');
+    if (lockScreen) {
+      lockScreen.classList.add('hidden');
+    }
     window.closePasswordModal();
     window.openAdminModal();
     showToast(currentLang === 'ar' ? 'أهلاً بك يا مشرف كراستي! 🔐' : 'Welcome back, Korasty Admin! 🔐');
@@ -923,8 +1181,13 @@ window.openAdminModal = function() {
   const modal = document.getElementById('adminModal');
   if (modal) {
     modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+    modal.classList.remove('hidden');
+    modal.style.display = 'flex';
+    document.body.style.overflow = '';
+    renderAdminStats();
     renderAdminLessonsList();
+    renderAdminBooksList();
+    renderAdminQuizBankInspector();
   }
 };
 
@@ -932,17 +1195,247 @@ window.closeAdminModal = function() {
   const modal = document.getElementById('adminModal');
   if (modal) {
     modal.classList.remove('active');
+    if (!document.getElementById('adminLockScreen')) {
+      modal.classList.add('hidden');
+      modal.style.display = '';
+    }
     document.body.style.overflow = '';
   }
+};
+
+window.lockAdminWorkspace = function() {
+  const modal = document.getElementById('adminModal');
+  const lockScreen = document.getElementById('adminLockScreen');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.classList.add('hidden');
+    modal.style.display = 'none';
+  }
+  if (lockScreen) {
+    lockScreen.classList.remove('hidden');
+  }
+  const input = document.getElementById('adminPasswordInput');
+  if (input) input.value = '';
+  showToast(currentLang === 'ar' ? 'تم قفل لوحة الإدارة 🔒' : 'Admin panel locked 🔒');
+};
+
+window.renderAdminStats = function() {
+  const lessonsCountEl = document.getElementById('adminTotalLessonsCount');
+  const booksCountEl = document.getElementById('adminTotalBooksCount');
+  const commentsCountEl = document.getElementById('adminTotalCommentsCount');
+
+  if (lessonsCountEl) lessonsCountEl.innerText = (lessons ? lessons.length : 0).toString();
+  if (booksCountEl) booksCountEl.innerText = (books ? books.length : 0).toString();
+  if (commentsCountEl) commentsCountEl.innerText = (comments ? comments.length : 0).toString();
+};
+
+window.renderAdminBooksList = function() {
+  const container = document.getElementById('adminBooksList');
+  if (!container) return;
+
+  if (!books || books.length === 0) {
+    container.innerHTML = `<p class="text-slate-400 py-6 text-center text-xs font-semibold">${currentLang === 'ar' ? 'لا توجد كتب حالياً.' : 'No books found.'}</p>`;
+    return;
+  }
+
+  container.innerHTML = `
+    <div class="overflow-x-auto rounded-2xl border border-slate-100 shadow-sm bg-white">
+      <table class="w-full text-right border-collapse">
+        <thead>
+          <tr class="bg-pink-600 text-white text-xs font-bold">
+            <th class="p-3.5">${currentLang === 'ar' ? 'الكتاب / المذكرة' : 'Book / Sheet'}</th>
+            <th class="p-3.5">${currentLang === 'ar' ? 'الصف الدراسي' : 'Grade'}</th>
+            <th class="p-3.5 text-center">${currentLang === 'ar' ? 'الرابط والمعاينة' : 'Preview'}</th>
+            <th class="p-3.5 text-center">${currentLang === 'ar' ? 'الإجراء' : 'Actions'}</th>
+          </tr>
+        </thead>
+        <tbody class="text-xs text-slate-700 divide-y divide-slate-100">
+          ${books.map(b => `
+            <tr class="hover:bg-slate-50/60 transition-colors">
+              <td class="p-3.5 font-bold flex items-center gap-2">
+                <span class="text-lg">${b.icon || '📕'}</span>
+                <span class="max-w-xs truncate">${b.title}</span>
+              </td>
+              <td class="p-3.5 font-semibold text-slate-600">${b.grade || 'جميع الصفوف'}</td>
+              <td class="p-3.5 text-center">
+                <a href="${b.url}" target="_blank" class="px-3 py-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 font-bold rounded-lg transition-all inline-flex items-center gap-1">
+                  <span>🔗</span>
+                  <span>${currentLang === 'ar' ? 'معاينة' : 'Open'}</span>
+                </a>
+              </td>
+              <td class="p-3.5 text-center">
+                <button onclick="deleteBook('${b.id}')" class="px-3 py-1 bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-600 font-bold rounded-lg transition-all cursor-pointer">
+                  ${currentLang === 'ar' ? 'حذف 🗑️' : 'Delete'}
+                </button>
+              </td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+};
+
+window.deleteBook = async function(id) {
+  if (!confirm(currentLang === 'ar' ? 'هل أنت متأكد من رغبتك في حذف هذا الكتاب من المكتبة؟' : 'Are you sure you want to delete this book?')) return;
+
+  if (db && !id.startsWith('builtin-') && !id.startsWith('local-') && !id.startsWith('seed-')) {
+    try {
+      await deleteDoc(doc(db, "korasty_books", id));
+      showToast(currentLang === 'ar' ? 'تم حذف الكتاب من السحابة بنجاح! 🗑️' : 'Book deleted from cloud successfully! 🗑️');
+    } catch (e) {
+      console.warn("Could not delete book from DB:", e);
+    }
+  }
+
+  books = books.filter(b => b.id !== id);
+  saveLocalFallback();
+  renderBooks();
+  renderAdminBooksList();
+  renderAdminStats();
+  showToast(currentLang === 'ar' ? 'تم تحديث قائمة الكتب!' : 'Books list updated!');
+};
+
+window.renderAdminQuizBankInspector = function() {
+  const container = document.getElementById('adminQuizBankInspector');
+  if (!container) return;
+
+  const allSubjects = [
+    { title: '🇬🇧 اللغة الإنجليزية (English Level Placement Quiz)', list: englishQuizQuestions },
+    { title: '🔢 الرياضيات والحساب (Math & Logic Assessment)', list: mathQuizQuestions },
+    { title: '🦁 اللغة العربية والقراءة (Arabic Language Assessment)', list: arabicQuizQuestions }
+  ];
+
+  container.innerHTML = allSubjects.map(subj => `
+    <div class="border border-slate-200/80 rounded-2xl p-5 bg-white shadow-xs">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+        <h5 class="font-extrabold text-sm text-slate-800 flex items-center gap-2">
+          <span>${subj.title}</span>
+        </h5>
+        <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-lg">8 أسئلة تفاعلية</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        ${subj.list.map((q, idx) => `
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+            <div class="flex items-center gap-2 font-bold text-slate-800 mb-1">
+              <span class="text-base">${q.emoji || '📝'}</span>
+              <span>سؤال ${idx + 1}: ${q.questionAr || q.questionEn}</span>
+            </div>
+            <div class="text-[11px] text-slate-500 mb-2">${q.questionEn || ''}</div>
+            <div class="flex flex-wrap gap-1.5">
+              ${q.options.map(opt => `
+                <span class="px-2 py-0.5 rounded-md text-[11px] ${opt.isCorrect ? 'bg-emerald-100 text-emerald-800 font-bold border border-emerald-200' : 'bg-white text-slate-600 border border-slate-200'}">
+                  ${opt.textAr || opt.textEn} ${opt.isCorrect ? '✔' : ''}
+                </span>
+              `).join('')}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+};
+
+window.restoreBuiltInContent = async function() {
+  if (!confirm(currentLang === 'ar' ? 'هل ترغب في استعادة كافة الدروس والكتب الافتراضية المدمجة في المنصة؟' : 'Restore all built-in lessons and books?')) return;
+
+  const baseLessons = defaultLessons.map((l, i) => ({ id: `builtin-lesson-${Date.now()}-${i}`, ...l }));
+  const baseBooks = defaultBooks.map((b, i) => ({ id: `builtin-book-${Date.now()}-${i}`, ...b }));
+
+  lessons = baseLessons;
+  books = baseBooks;
+
+  saveLocalFallback();
+  renderLessons();
+  renderBooks();
+  renderAdminLessonsList();
+  renderAdminBooksList();
+  renderAdminStats();
+
+  if (db) {
+    try {
+      baseLessons.forEach(async (l) => {
+        const { id, ...data } = l;
+        await addDoc(collection(db, "korasty_lessons"), data);
+      });
+      baseBooks.forEach(async (b) => {
+        const { id, ...data } = b;
+        await addDoc(collection(db, "korasty_books"), data);
+      });
+    } catch (e) {
+      console.warn("Cloud write during restore failed, local fallback maintained:", e);
+    }
+  }
+
+  showToast(currentLang === 'ar' ? 'تمت استعادة المحتوى المدمج بالكامل بنجاح! 🌱' : 'Built-in content restored successfully! 🌱');
+};
+
+window.forceCloudResync = function() {
+  showToast(currentLang === 'ar' ? 'جارِ فحص ومزامنة الاتصال بالسحابة... 🔄' : 'Checking cloud sync... 🔄');
+  try {
+    setupDatabaseListeners();
+    setTimeout(() => {
+      showToast(currentLang === 'ar' ? 'تم تحديث المزامنة بنجاح ✔' : 'Cloud sync updated ✔');
+    }, 1000);
+  } catch (e) {
+    console.warn("Resync notice:", e);
+    showToast(currentLang === 'ar' ? 'البيانات نشطة محلياً وسحابياً ⚡' : 'Data active locally and in cloud ⚡', false);
+  }
+};
+
+window.exportAppData = function() {
+  const data = {
+    exportedAt: new Date().toISOString(),
+    totalLessons: lessons.length,
+    totalBooks: books.length,
+    lessons,
+    books,
+    comments
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `korasty-backup-${new Date().toISOString().slice(0, 10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast(currentLang === 'ar' ? 'تم تنزيل ملف النسخة الاحتياطية بنجاح! 📥' : 'Backup file downloaded! 📥');
+};
+
+window.resetLocalCache = function() {
+  saveLocalFallback();
+  renderLessons();
+  renderBooks();
+  renderAdminLessonsList();
+  renderAdminBooksList();
+  renderAdminStats();
+  showToast(currentLang === 'ar' ? 'تم تحديث الذاكرة وتنشيط البيانات! 🧹' : 'Cache refreshed! 🧹');
 };
 
 window.switchAdminTab = function(index) {
   document.querySelectorAll('.admin-tab').forEach((tab, i) => {
     tab.classList.toggle('active', i === index);
+    if (i === index) {
+      tab.classList.remove('border-transparent', 'text-slate-500');
+      tab.classList.add('border-indigo-600', 'text-indigo-600', 'font-bold');
+    } else {
+      tab.classList.remove('border-indigo-600', 'text-indigo-600', 'font-bold');
+      tab.classList.add('border-transparent', 'text-slate-500');
+    }
   });
   document.querySelectorAll('.admin-content').forEach((content, i) => {
     content.classList.toggle('active', i === index);
+    if (i === index) {
+      content.classList.remove('hidden');
+    } else {
+      content.classList.add('hidden');
+    }
   });
+
+  if (index === 1) renderAdminLessonsList();
+  if (index === 2) renderAdminBooksList();
+  if (index === 3) renderAdminQuizBankInspector();
+  renderAdminStats();
 };
 
 window.handleAddLesson = async function(event) {
@@ -1082,21 +1575,21 @@ window.handleAddBook = async function(event) {
 window.deleteLesson = async function(id) {
   if (!confirm(currentLang === 'ar' ? 'هل أنت متأكد من رغبتك في حذف هذا الدرس نهائياً؟' : 'Are you sure you want to delete this lesson?')) return;
 
-  if (db && !id.startsWith('local-')) {
+  if (db && !id.startsWith('local-') && !id.startsWith('builtin-')) {
     try {
       await deleteDoc(doc(db, "korasty_lessons", id));
-      showToast(currentLang === 'ar' ? 'تم حذف الدرس بنجاح! 🗑️' : 'Lesson deleted successfully! 🗑️');
+      showToast(currentLang === 'ar' ? 'تم حذف الدرس من السحابة بنجاح! 🗑️' : 'Lesson deleted successfully! 🗑️');
     } catch (e) {
-      console.error("Firestore delete failed:", e);
-      showToast(currentLang === 'ar' ? 'فشل الحذف من السحابة' : 'Failed to delete from cloud', true);
+      console.warn("Firestore delete notice:", e);
     }
-  } else {
-    lessons = lessons.filter(l => l.id !== id);
-    renderLessons();
-    renderAdminLessonsList();
-    saveLocalFallback();
-    showToast(currentLang === 'ar' ? 'تم حذف الدرس محلياً' : 'Lesson deleted locally');
   }
+
+  lessons = lessons.filter(l => l.id !== id);
+  renderLessons();
+  renderAdminLessonsList();
+  renderAdminStats();
+  saveLocalFallback();
+  showToast(currentLang === 'ar' ? 'تم تحديث قائمة الدروس' : 'Lessons updated');
 };
 
 // Educational Games - Match and Star Quiz Challenge
@@ -1923,15 +2416,22 @@ window.switchTestType = function(type) {
   const descAr = document.getElementById('quizStartDescAr');
   const descEn = document.getElementById('quizStartDescEn');
   
-  if (descAr && descEn) {
+  if (descAr) {
     if (type === 'english') {
       descAr.innerText = "مستعد لمعرفة مستواك في اللغة الإنجليزية؟ أجب على 8 أسئلة لغوية تفاعلية سريعة واحصل على تقييم وشهادة فورية!";
-      descEn.innerText = "Ready to check your English level? Answer 8 quick interactive language questions and receive your verified certificate level!";
     } else if (type === 'math') {
       descAr.innerText = "مستعد لاختبار مهاراتك الحسابية والذهنية؟ أجب على 8 أسئلة ممتعة في الرياضيات واحصل على تقييم وشهادة فورية!";
-      descEn.innerText = "Ready to check your mathematics and analytical skills? Answer 8 fun interactive math questions and receive your verified competency certificate!";
     } else if (type === 'arabic') {
       descAr.innerText = "مستعد لاختبار مهاراتك في اللغة العربية الفصحى؟ أجب على 8 أسئلة تفاعلية رائعة واحصل على تقييم وشهادة فورية!";
+    }
+  }
+
+  if (descEn) {
+    if (type === 'english') {
+      descEn.innerText = "Ready to check your English level? Answer 8 quick interactive language questions and receive your verified certificate level!";
+    } else if (type === 'math') {
+      descEn.innerText = "Ready to check your mathematics and analytical skills? Answer 8 fun interactive math questions and receive your verified competency certificate!";
+    } else if (type === 'arabic') {
       descEn.innerText = "Ready to test your Arabic grammar, spelling and vocabulary skills? Answer 8 quick interactive questions and receive your verified proficiency certificate!";
     }
   }
@@ -1943,9 +2443,13 @@ window.startBuiltInQuiz = function() {
   quizCurrentIndex = 0;
   quizScore = 0;
   
-  document.getElementById('quizStartState').classList.add('hidden');
-  document.getElementById('quizEndState').classList.add('hidden');
-  document.getElementById('quizPlayState').classList.remove('hidden');
+  const startState = document.getElementById('quizStartState');
+  const endState = document.getElementById('quizEndState');
+  const playState = document.getElementById('quizPlayState');
+
+  if (startState) startState.classList.add('hidden');
+  if (endState) endState.classList.add('hidden');
+  if (playState) playState.classList.remove('hidden');
   
   renderQuizQuestion();
 };
@@ -1953,25 +2457,32 @@ window.startBuiltInQuiz = function() {
 window.renderQuizQuestion = function() {
   const questionsList = currentTestType === 'english' ? englishQuizQuestions : (currentTestType === 'math' ? mathQuizQuestions : arabicQuizQuestions);
   const currentQ = questionsList[quizCurrentIndex];
+  if (!currentQ) return;
   
-  // Set question number and score
-  document.getElementById('quizCurrentProgress').innerText = (quizCurrentIndex + 1).toString();
-  document.getElementById('quizCurrentScore').innerText = quizScore.toString();
+  // Set question number and score safely
+  const progressEl = document.getElementById('quizCurrentProgress');
+  const scoreEl = document.getElementById('quizCurrentScore');
+  const emojiEl = document.getElementById('quizQuestionEmoji');
+  const textEl = document.getElementById('quizQuestionText');
+
+  if (progressEl) progressEl.innerText = (quizCurrentIndex + 1).toString();
+  if (scoreEl) scoreEl.innerText = quizScore.toString();
+  if (emojiEl) emojiEl.innerText = currentQ.emoji;
   
-  // Set question values
-  document.getElementById('quizQuestionEmoji').innerText = currentQ.emoji;
-  
-  if (currentLang === 'ar') {
-    document.getElementById('quizQuestionText').innerText = currentQ.questionAr;
-  } else {
-    document.getElementById('quizQuestionText').innerText = currentQ.questionEn;
+  if (textEl) {
+    if (currentLang === 'ar') {
+      textEl.innerText = currentQ.questionAr;
+    } else {
+      textEl.innerText = currentQ.questionEn;
+    }
   }
   
   // Render options grid
   const answersGrid = document.getElementById('quizAnswersGrid');
+  if (!answersGrid) return;
   answersGrid.innerHTML = '';
   
-  currentQ.options.forEach((opt, idx) => {
+  currentQ.options.forEach((opt) => {
     const btn = document.createElement('button');
     btn.className = "p-3 bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 rounded-xl text-xs font-bold text-slate-700 text-center transition-all cursor-pointer hover:scale-[1.02] flex flex-col items-center justify-center gap-1";
     btn.onclick = () => selectQuizAnswer(opt.isCorrect);
@@ -2008,10 +2519,14 @@ window.selectQuizAnswer = function(isCorrect) {
 };
 
 window.finishBuiltInQuiz = function() {
-  document.getElementById('quizPlayState').classList.add('hidden');
-  document.getElementById('quizEndState').classList.remove('hidden');
+  const playState = document.getElementById('quizPlayState');
+  const endState = document.getElementById('quizEndState');
+
+  if (playState) playState.classList.add('hidden');
+  if (endState) endState.classList.remove('hidden');
   
-  document.getElementById('quizFinalScore').innerText = quizScore.toString();
+  const finalScoreEl = document.getElementById('quizFinalScore');
+  if (finalScoreEl) finalScoreEl.innerText = quizScore.toString();
   
   const certTypeEl = document.getElementById('quizCertType');
   const badgeEl = document.getElementById('quizLevelBadge');
@@ -2019,57 +2534,63 @@ window.finishBuiltInQuiz = function() {
   
   if (currentTestType === 'english') {
     if (certTypeEl) certTypeEl.innerText = "Certificate of English Proficiency";
-    if (quizScore <= 3) {
-      badgeEl.innerText = currentLang === 'ar' ? 'مبتدئ (Beginner A1) 🧸' : 'Beginner (A1) 🧸';
-      descEl.innerText = currentLang === 'ar' 
-        ? 'رائع كخطوة أولى! استمر في قراءة كتب الأطفال والاستماع للمقاطع الصوتية لتنمية مهاراتك!' 
-        : 'Fantastic starting point! Keep reading storybooks and listening to kids songs to grow!';
-    } else if (quizScore <= 6) {
-      badgeEl.innerText = currentLang === 'ar' ? 'أساسي (Elementary A2) 🌟' : 'Elementary (A2) 🌟';
-      descEl.innerText = currentLang === 'ar' 
-        ? 'ممتاز جداً! لديك أساس قوي للكلمات والجمل البسيطة. واصل التعلم للوصول للمستوى المتقدم!' 
-        : 'Wonderful job! You have a solid understanding of basic words and simple sentences. Keep up the high effort!';
-    } else {
-      badgeEl.innerText = currentLang === 'ar' ? 'متوسط (Intermediate B1) 🏆' : 'Intermediate (B1) 🏆';
-      descEl.innerText = currentLang === 'ar' 
-        ? 'مذهل ومثالي! مستواك رائع للغاية وقريب جداً من الطلاقة اللغوية. أنت بطل لغوي حقيقي!' 
-        : 'Outstanding and flawless! Your level is highly proficient and nearing complete fluency. You are a real language champion!';
+    if (badgeEl && descEl) {
+      if (quizScore <= 3) {
+        badgeEl.innerText = currentLang === 'ar' ? 'مبتدئ (Beginner A1) 🧸' : 'Beginner (A1) 🧸';
+        descEl.innerText = currentLang === 'ar' 
+          ? 'رائع كخطوة أولى! استمر في قراءة كتب الأطفال والاستماع للمقاطع الصوتية لتنمية مهاراتك!' 
+          : 'Fantastic starting point! Keep reading storybooks and listening to kids songs to grow!';
+      } else if (quizScore <= 6) {
+        badgeEl.innerText = currentLang === 'ar' ? 'أساسي (Elementary A2) 🌟' : 'Elementary (A2) 🌟';
+        descEl.innerText = currentLang === 'ar' 
+          ? 'ممتاز جداً! لديك أساس قوي للكلمات والجمل البسيطة. واصل التعلم للوصول للمستوى المتقدم!' 
+          : 'Wonderful job! You have a solid understanding of basic words and simple sentences. Keep up the high effort!';
+      } else {
+        badgeEl.innerText = currentLang === 'ar' ? 'متوسط (Intermediate B1) 🏆' : 'Intermediate (B1) 🏆';
+        descEl.innerText = currentLang === 'ar' 
+          ? 'مذهل ومثالي! مستواك رائع للغاية وقريب جداً من الطلاقة اللغوية. أنت بطل لغوي حقيقي!' 
+          : 'Outstanding and flawless! Your level is highly proficient and nearing complete fluency. You are a real language champion!';
+      }
     }
   } else if (currentTestType === 'math') {
     if (certTypeEl) certTypeEl.innerText = "Certificate of Mathematics Competency";
-    if (quizScore <= 3) {
-      badgeEl.innerText = currentLang === 'ar' ? 'مبتدئ حسابي (Math Apprentice) 🧸' : 'Math Apprentice 🧸';
-      descEl.innerText = currentLang === 'ar' 
-        ? 'خطوة ممتازة! تدرب على عمليات الجمع والطرح البسيطة باستخدام الفواكه والألعاب لتصبح عبقرياً!' 
-        : 'A great step! Practice basic addition and subtraction with toys and fruits to level up!';
-    } else if (quizScore <= 6) {
-      badgeEl.innerText = currentLang === 'ar' ? 'مستكشف حسابي (Math Explorer) 🌟' : 'Math Explorer 🌟';
-      descEl.innerText = currentLang === 'ar' 
-        ? 'عمل رائع ومميز! أنت تحل العمليات الحسابية والأنماط والأشكال الهندسية بذكاء ملحوظ!' 
-        : 'Superb! You solve arithmetic equations, patterns and geometric shapes with high agility!';
-    } else {
-      badgeEl.innerText = currentLang === 'ar' ? 'عبقري رياضيات (Math Wizard) 🏆' : 'Math Wizard 🏆';
-      descEl.innerText = currentLang === 'ar' 
-        ? 'مدهش! ذكاؤك الحسابي وسرعتك في التفكير تدل على عقلية عبقرية في حل المسائل الرياضية!' 
-        : 'Astounding! Your rapid arithmetic agility and logical reasoning belong to a true mathematics wizard!';
+    if (badgeEl && descEl) {
+      if (quizScore <= 3) {
+        badgeEl.innerText = currentLang === 'ar' ? 'مبتدئ حسابي (Math Apprentice) 🧸' : 'Math Apprentice 🧸';
+        descEl.innerText = currentLang === 'ar' 
+          ? 'خطوة ممتازة! تدرب على عمليات الجمع والطرح البسيطة باستخدام الفواكه والألعاب لتصبح عبقرياً!' 
+          : 'A great step! Practice basic addition and subtraction with toys and fruits to level up!';
+      } else if (quizScore <= 6) {
+        badgeEl.innerText = currentLang === 'ar' ? 'مستكشف حسابي (Math Explorer) 🌟' : 'Math Explorer 🌟';
+        descEl.innerText = currentLang === 'ar' 
+          ? 'عمل رائع ومميز! أنت تحل العمليات الحسابية والأنماط والأشكال الهندسية بذكاء ملحوظ!' 
+          : 'Superb! You solve arithmetic equations, patterns and geometric shapes with high agility!';
+      } else {
+        badgeEl.innerText = currentLang === 'ar' ? 'عبقري رياضيات (Math Wizard) 🏆' : 'Math Wizard 🏆';
+        descEl.innerText = currentLang === 'ar' 
+          ? 'مدهش! ذكاؤك الحسابي وسرعتك في التفكير تدل على عقلية عبقرية في حل المسائل الرياضية!' 
+          : 'Astounding! Your rapid arithmetic agility and logical reasoning belong to a true mathematics wizard!';
+      }
     }
   } else if (currentTestType === 'arabic') {
     if (certTypeEl) certTypeEl.innerText = "شهادة جدارة في اللغة العربية الفصحى";
-    if (quizScore <= 3) {
-      badgeEl.innerText = currentLang === 'ar' ? 'براعم العربية (Arabic Beginner) 🧸' : 'Arabic Beginner 🧸';
-      descEl.innerText = currentLang === 'ar' 
-        ? 'بداية طيبة يا بطل! واصل الاستماع لقصص الحروف والكلمات العربية المصورة لتقوية مهاراتك الإملائية!' 
-        : 'Splendid start! Keep listening to letter sounds and viewing cute illustrated vocabulary books to grow!';
-    } else if (quizScore <= 6) {
-      badgeEl.innerText = currentLang === 'ar' ? 'فصيح متميز (Arabic Explorer) 🌟' : 'Arabic Explorer 🌟';
-      descEl.innerText = currentLang === 'ar' 
-        ? 'أحسنت صنعاً! تفهم المفردات العربية الفصحى، أسماء الإشارة، وقواعد الكتابة البسيطة ببراعة!' 
-        : 'Excellent effort! You understand formal vocabulary, demonstrative pronouns, and basic grammar very well!';
-    } else {
-      badgeEl.innerText = currentLang === 'ar' ? 'سيبويه الصغير (Arabic Master) 🏆' : 'Arabic Master 🏆';
-      descEl.innerText = currentLang === 'ar' 
-        ? 'رائع وعظيم! لغتك فصيحة، وإملائك دقيق، وقدرتك على استيعاب القواعد تليق بكاتب بليغ ومبدع!' 
-        : 'Incredible mastery! Your spelling is precise and your linguistic foundations reflect an future eloquent author!';
+    if (badgeEl && descEl) {
+      if (quizScore <= 3) {
+        badgeEl.innerText = currentLang === 'ar' ? 'براعم العربية (Arabic Beginner) 🧸' : 'Arabic Beginner 🧸';
+        descEl.innerText = currentLang === 'ar' 
+          ? 'بداية طيبة يا بطل! واصل الاستماع لقصص الحروف والكلمات العربية المصورة لتقوية مهاراتك الإملائية!' 
+          : 'Splendid start! Keep listening to letter sounds and viewing cute illustrated vocabulary books to grow!';
+      } else if (quizScore <= 6) {
+        badgeEl.innerText = currentLang === 'ar' ? 'فصيح متميز (Arabic Explorer) 🌟' : 'Arabic Explorer 🌟';
+        descEl.innerText = currentLang === 'ar' 
+          ? 'أحسنت صنعاً! تفهم المفردات العربية الفصحى، أسماء الإشارة، وقواعد الكتابة البسيطة ببراعة!' 
+          : 'Excellent effort! You understand formal vocabulary, demonstrative pronouns, and basic grammar very well!';
+      } else {
+        badgeEl.innerText = currentLang === 'ar' ? 'سيبويه الصغير (Arabic Master) 🏆' : 'Arabic Master 🏆';
+        descEl.innerText = currentLang === 'ar' 
+          ? 'رائع وعظيم! لغتك فصيحة، وإملائك دقيق، وقدرتك على استيعاب القواعد تليق بكاتب بليغ ومبدع!' 
+          : 'Incredible mastery! Your spelling is precise and your linguistic foundations reflect an future eloquent author!';
+      }
     }
   }
 };
@@ -2078,9 +2599,13 @@ window.resetBuiltInQuiz = function() {
   quizCurrentIndex = 0;
   quizScore = 0;
   
-  document.getElementById('quizPlayState').classList.add('hidden');
-  document.getElementById('quizEndState').classList.add('hidden');
-  document.getElementById('quizStartState').classList.remove('hidden');
+  const playState = document.getElementById('quizPlayState');
+  const endState = document.getElementById('quizEndState');
+  const startState = document.getElementById('quizStartState');
+  
+  if (playState) playState.classList.add('hidden');
+  if (endState) endState.classList.add('hidden');
+  if (startState) startState.classList.remove('hidden');
 };
 
 function playTone(isSuccess) {

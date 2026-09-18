@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ألعاب الذكاء والمرح كراستي التفاعلية | Games Arcade</title>
+    
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="antialiased selection:bg-indigo-100 text-slate-800" data-lang="ar">
+
+    <!-- Global Header -->
+    <header id="mainHeader" class="sticky top-0 z-50 bg-gradient-to-r from-indigo-600 via-indigo-700 to-pink-600 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div id="brandContainer" class="flex items-center gap-3">
+                <a href="/index.html" class="text-4xl p-2 bg-white/10 hover:bg-white/20 rounded-2xl border border-white/20 transition-all">📚</a>
+                <div>
+                    <h1 id="brandName" class="text-xl sm:text-2xl font-extrabold text-white flex items-center gap-2">
+                        <a href="/index.html" class="hover:underline">
+                            <span class="ar-text">كراستي | ساحة الألعاب</span>
+                            <span class="en-text hidden">Korasty | Games Arcade</span>
+                        </a>
+                    </h1>
+                    <div class="flex flex-wrap items-center gap-2 mt-1">
+                        <span class="px-2 py-0.5 bg-yellow-400 text-slate-900 font-black text-[10px] tracking-wider rounded-md">Korasty.dpdns.org</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="headerActions" class="flex items-center gap-3">
+                <a href="/index.html" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/15 rounded-xl transition-all">
+                    <span class="ar-text">🏠 الرئيسية</span>
+                    <span class="en-text hidden">🏠 Home</span>
+                </a>
+                <button id="langToggleBtn" onclick="toggleLanguage()" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/15 rounded-xl transition-all cursor-pointer">
+                    🌐 EN | عربي
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div id="mainLayoutContainer" class="max-w-4xl mx-auto px-4 py-12 flex flex-col gap-8">
+        
+        <!-- Welcome Banner -->
+        <article class="bg-gradient-to-r from-emerald-600 to-teal-500 rounded-3xl p-8 text-white relative overflow-hidden shadow-md">
+            <div class="relative z-10 max-w-xl">
+                <h2 class="text-2xl sm:text-3xl font-extrabold mb-3">
+                    <span class="ar-text">🎮 ألعاب وتحديات كراستي التفاعلية!</span>
+                    <span class="en-text hidden">🎮 Korasty Interactive Playground!</span>
+                </h2>
+                <p class="text-emerald-100 text-sm leading-relaxed mb-4">
+                    <span class="ar-text">مجموعة من الألعاب التعليمية والذهنية المصممة خصيصاً لمساعدة الأطفال في حفظ الحروف والكلمات وتطوير مهارات الحساب والسرعة بطريقة مسلية للغاية!</span>
+                    <span class="en-text hidden">A collection of educational brain play challenges crafted to help children memorize letters, learn vocabulary, and develop basic math speed!</span>
+                </p>
+            </div>
+            <div class="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-white/5 pointer-events-none"></div>
+        </article>
+
+        <!-- Games Grid -->
+        <section id="gamesDashboard">
+            <h3 class="text-lg font-extrabold text-slate-700 mb-6 flex items-center gap-2">
+                <span>🎮</span>
+                <span class="ar-text">اختر لعبتك المفضلة وابدأ المغامرة!</span>
+                <span class="en-text hidden">Pick your challenge & enter the adventure!</span>
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Match Letter game card -->
+                <div id="matchGameCard" onclick="openGameModal('match')" class="game-card bg-gradient-to-br from-emerald-500 to-teal-600 rounded-3xl p-6 text-white shadow-md cursor-pointer border border-emerald-400/20 hover:scale-[1.03] transition-all">
+                    <span class="text-5xl block mb-4 animate-bounce">🧩</span>
+                    <h4 class="text-lg font-black mb-2">
+                        <span class="ar-text">لعبة مطابقة الحروف</span>
+                        <span class="en-text hidden">Letter Match Arena</span>
+                    </h4>
+                    <p class="text-xs text-emerald-100/95 leading-relaxed">
+                        <span class="ar-text">طابق الحروف العربية والإنجليزية بالكلمات المناسبة لها لربح النجوم الذهبية وتنمية حصيلتك اللغوية!</span>
+                        <span class="en-text hidden">Pair letters with corresponding words, test your speed, and win stars!</span>
+                    </p>
+                    <div class="mt-4 inline-flex items-center gap-1 text-xs font-bold bg-white/20 px-3 py-1.5 rounded-full">
+                        <span>▶️</span>
+                        <span class="ar-text">ابدأ اللعب الآن</span>
+                        <span class="en-text hidden">Start Play</span>
+                    </div>
+                </div>
+                
+                <!-- Quiz Challenge card -->
+                <div id="quizGameCard" onclick="openGameModal('quiz')" class="game-card bg-gradient-to-br from-amber-500 to-orange-600 rounded-3xl p-6 text-white shadow-md cursor-pointer border border-amber-400/20 hover:scale-[1.03] transition-all">
+                    <span class="text-5xl block mb-4">⭐</span>
+                    <h4 class="text-lg font-black mb-2">
+                        <span class="ar-text">تحدي النجوم السريع</span>
+                        <span class="en-text hidden">Star Quiz Master</span>
+                    </h4>
+                    <p class="text-xs text-amber-100/95 leading-relaxed">
+                        <span class="ar-text">اختبر معلوماتك العامة والرياضية السريعة والذكية وأجب على الأسئلة في الوقت المناسب!</span>
+                        <span class="en-text hidden">Speedy general questions, riddles, and interactive math flashcards.</span>
+                    </p>
+                    <div class="mt-4 inline-flex items-center gap-1 text-xs font-bold bg-white/20 px-3 py-1.5 rounded-full">
+                        <span>▶️</span>
+                        <span class="ar-text">ابدأ التحدي الآن</span>
+                        <span class="en-text hidden">Enter Challenge</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Active Game Modal -->
+    <div id="gameModal" role="dialog" aria-modal="true" aria-labelledby="gameModalTitle" class="modal fixed inset-0 hidden items-center justify-center p-4 bg-slate-900/60 z-[200]">
+        <div class="modal-content bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+            <div class="modal-header p-5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white flex justify-between items-center">
+                <h2 id="gameModalTitle" class="text-lg font-extrabold flex items-center gap-1.5">الألعاب التعليمية</h2>
+                <button onclick="closeGameModal()" aria-label="إغلاق لعبة التحدي" class="close-btn text-white bg-white/10 hover:bg-white/20 p-2 rounded-lg text-sm transition-all cursor-pointer">✕</button>
+            </div>
+            <div id="gameModalBody" class="p-6"></div>
+        </div>
+    </div>
+
+    <!-- Google Translate Hidden Widget Container -->
+    <div id="google_translate_element" style="display: none !important;"></div>
+
+    <!-- Google Translate Script Loader -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ar',
+                includedLanguages: 'ar,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Custom Floating Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Load Module Controller -->
+    <script type="module" src="../script.js"></script>
+</body>
+</html>
