@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كراستي - منصة تعلم اللغات التفاعلية للأطفال | Korasty</title>
+    <meta name="description" content="منصة تعليمية تفاعلية للأطفال لتعلم اللغات وحل الألعاب التعليمية وقراءة الكتب والملفات الدراسية." />
+    <meta property="og:title" content="كراستي - منصة تعلم اللغات التفاعلية للأطفال | Korasty" />
+    <meta property="og:description" content="منصة تعليمية تفاعلية للأطفال لتعلم اللغات وحل الألعاب التعليمية وقراءة الكتب والملفات الدراسية." />
+    <meta property="og:type" content="website" />
+    
+    <!-- Design System Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="antialiased selection:bg-indigo-100 text-slate-800" data-lang="ar">
+
+    <!-- DigitalPlat Powered Announcement Header Bar -->
+    <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white py-3 px-4 border-b border-indigo-500/20 text-center flex flex-wrap items-center justify-center gap-3">
+        <span class="inline-flex items-center gap-1 text-xs font-bold text-amber-300">
+            <span>🚀</span>
+            <span class="ar-text">تم تفعيل النطاق بنجاح:</span>
+            <span class="en-text hidden">Domain active:</span>
+            <strong class="underline decoration-amber-400 font-extrabold text-white ml-1">Korasty.dpdns.org</strong>
+        </span>
+        <span class="h-4 w-[1px] bg-slate-700 hidden sm:block"></span>
+        <a href="https://dashboard.digitalplat.org/signup?ref=seRKf8j6Tx" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 hover:scale-105 transition-all">
+            <img src="https://img.shields.io/badge/DigitalPlat-Get%20a%20free%20domain%20from%20DigitalPlat.-111827?style=flat-square&logo=databricks&logoColor=93c5fd" alt="DigitalPlat Badge" class="h-5 rounded shadow-sm border border-slate-700" />
+        </a>
+        <a href="https://dashboard.digitalplat.org/signup?ref=seRKf8j6Tx" target="_blank" rel="noopener noreferrer" class="text-[11px] text-slate-300 hover:text-amber-300 font-bold transition-colors underline">
+            <span class="ar-text">احصل على نطاق مجاني متميز الآن ↗</span>
+            <span class="en-text hidden">Get your free premium domain here ↗</span>
+        </a>
+    </div>
+
+    <!-- Global Header with Live Controls -->
+    <header id="mainHeader" class="sticky top-0 z-50 bg-gradient-to-r from-indigo-600 via-indigo-700 to-pink-600 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div id="brandContainer" class="flex items-center gap-3">
+                <span id="brandLogo" class="text-4xl p-2 bg-white/10 rounded-2xl border border-white/20">📚</span>
+                <div>
+                    <h1 id="brandName" class="text-xl sm:text-2xl font-extrabold text-white flex items-center gap-2">
+                        <span class="ar-text">كراستي | لتعليم الأطفال</span>
+                        <span class="en-text hidden">Korasty Kids Project</span>
+                    </h1>
+                    <div class="flex flex-wrap items-center gap-2 mt-1">
+                        <span class="px-2 py-0.5 bg-yellow-400 text-slate-900 font-black text-[10px] tracking-wider rounded-md">Korasty.dpdns.org</span>
+                        <a href="https://dashboard.digitalplat.org/signup?ref=seRKf8j6Tx" target="_blank" rel="noopener noreferrer" class="hover:opacity-90 transition-opacity">
+                            <img src="https://img.shields.io/badge/DigitalPlat-Powered-111827?style=flat-square&logo=databricks&logoColor=93c5fd" alt="DigitalPlat Badge" class="h-4" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+                    <p id="brandTagline" class="text-xs text-indigo-100 font-medium">
+                        <span class="ar-text">أهلاً بك في عالم التعلم والمرح السحابي! ✨</span>
+                        <span class="en-text hidden">Welcome to interactive cloud learning! ✨</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div id="headerActions" class="flex items-center gap-3">
+                <button id="langToggleBtn" onclick="toggleLanguage()" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-sm border border-white/15 hover:border-white/25 rounded-xl transition-all cursor-pointer">
+                    🌐 EN | عربي
+                </button>
+                <button id="adminPromptBtn" onclick="openPasswordModal()" class="px-4 py-2 bg-pink-500 hover:bg-pink-600 text-white font-extrabold text-sm border border-pink-400 rounded-xl transition-all shadow-sm flex items-center gap-1.5 cursor-pointer">
+                    🔐 
+                    <span class="ar-text">لوحة المشرف</span>
+                    <span class="en-text hidden">Admin Studio</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div id="mainLayoutContainer" class="max-w-7xl mx-auto px-4 py-8 flex flex-col gap-8">
+        
+        <!-- Search Bar Section -->
+        <section id="searchSection" class="w-full max-w-2xl mx-auto">
+            <div id="searchBarWrapper" class="relative flex items-center bg-white border border-gray-100 rounded-2xl shadow-sm p-2 transition-all focus-within:ring-2 focus-within:ring-indigo-500/20">
+                <span class="text-2xl px-3 text-slate-400">🔍</span>
+                <input type="text" id="searchInput" class="w-full bg-transparent border-none outline-none py-2 text-sm text-slate-800 placeholder-slate-400" placeholder="ابحث عن درس، لغة، أو كلمة...">
+                <button id="searchButton" onclick="filterLessons()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition-all cursor-pointer">
+                    <span class="ar-text">بحث سريع</span>
+                    <span class="en-text hidden">Search</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Sidebar + Content Body Grid -->
+        <div id="contentSplitGrid" class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            
+            <!-- Filters Sidebar -->
+            <aside id="filtersSidebar" role="search" aria-label="تصفيات الدروس والصفوف" class="lg:col-span-1 bg-white border border-gray-100 shadow-xs rounded-3xl p-6 h-fit lg:sticky lg:top-24">
+                <div class="mb-6 pb-4 border-b border-gray-100">
+                    <h3 class="text-sm font-extrabold text-slate-500 uppercase tracking-wider mb-4">
+                        <span class="ar-text">الصفوف الدراسية</span>
+                        <span class="en-text hidden">Grade Levels</span>
+                    </h3>
+                    <div id="gradeFilterGroup" class="flex flex-col sm:flex-row sm:flex-wrap lg:flex-col gap-2">
+                        <button onclick="filterByGrade('all')" aria-pressed="true" class="class-btn active w-full sm:w-auto lg:w-full text-right px-4 py-2.5 bg-indigo-600 text-white border-2 border-indigo-600 font-bold rounded-xl text-sm transition-all cursor-pointer">
+                            <span class="ar-text">جميع الصفوف</span>
+                            <span class="en-text hidden">All Grades</span>
+                        </button>
+                        <button onclick="filterByGrade('الأول الابتدائي')" aria-pressed="false" class="class-btn w-full sm:w-auto lg:w-full text-right px-4 py-2.5 bg-slate-50 text-slate-700 border-2 border-transparent font-semibold rounded-xl text-sm hover:bg-indigo-50/50 hover:text-indigo-600 transition-all cursor-pointer">
+                            <span class="ar-text">الأول الابتدائي</span>
+                            <span class="en-text hidden">1st Primary</span>
+                        </button>
+                        <button onclick="filterByGrade('الثاني الابتدائي')" aria-pressed="false" class="class-btn w-full sm:w-auto lg:w-full text-right px-4 py-2.5 bg-slate-50 text-slate-700 border-2 border-transparent font-semibold rounded-xl text-sm hover:bg-indigo-50/50 hover:text-indigo-600 transition-all cursor-pointer">
+                            <span class="ar-text">الثاني الابتدائي</span>
+                            <span class="en-text hidden">2nd Primary</span>
+                        </button>
+                        <button onclick="filterByGrade('الثالث الابتدائي')" aria-pressed="false" class="class-btn w-full sm:w-auto lg:w-full text-right px-4 py-2.5 bg-slate-50 text-slate-700 border-2 border-transparent font-semibold rounded-xl text-sm hover:bg-indigo-50/50 hover:text-indigo-600 transition-all cursor-pointer">
+                            <span class="ar-text">الثالث الابتدائي</span>
+                            <span class="en-text hidden">3rd Primary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-extrabold text-slate-500 uppercase tracking-wider mb-4">
+                        <span class="ar-text">اللغات والمواد</span>
+                        <span class="en-text hidden">Languages & Subjects</span>
+                    </h3>
+                    <div id="subjectFilterGroup" class="flex flex-col sm:flex-row sm:flex-wrap lg:flex-col gap-2">
+                        <button onclick="filterBySubject('all')" aria-pressed="true" class="subject-btn active w-full sm:w-auto lg:w-full text-right px-4 py-2 bg-pink-600 text-white border border-pink-600 font-semibold rounded-xl text-xs transition-all cursor-pointer">
+                            <span class="ar-text">جميع اللغات</span>
+                            <span class="en-text hidden">All Languages</span>
+                        </button>
+                        <button onclick="filterBySubject('عربي')" aria-pressed="false" class="subject-btn w-full sm:w-auto lg:w-full text-right px-4 py-2 bg-transparent text-slate-700 border border-slate-200 hover:border-pink-300 font-semibold rounded-xl text-xs transition-all cursor-pointer">
+                            <span class="ar-text">اللغة العربية</span>
+                            <span class="en-text hidden">Arabic Language</span>
+                        </button>
+                        <button onclick="filterBySubject('إنجليزي')" aria-pressed="false" class="subject-btn w-full sm:w-auto lg:w-full text-right px-4 py-2 bg-transparent text-slate-700 border border-slate-200 hover:border-pink-300 font-semibold rounded-xl text-xs transition-all cursor-pointer">
+                            <span class="ar-text">اللغة الإنجليزية</span>
+                            <span class="en-text hidden">English Language</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main id="mainContentArea" role="main" class="lg:col-span-3 flex flex-col gap-8">
+                
+                <!-- Welcome Banner -->
+                <article id="welcomeBanner" class="bg-gradient-to-r from-indigo-700 to-pink-600 rounded-3xl p-8 text-white relative overflow-hidden shadow-xs">
+                    <div class="relative z-10 max-w-xl">
+                        <h2 class="text-2xl sm:text-3xl font-extrabold mb-3">
+                            <span class="ar-text">✨ مرحباً بك في كراستي!</span>
+                            <span class="en-text hidden">✨ Welcome to Korasty!</span>
+                        </h2>
+                        <p class="text-indigo-100 text-sm leading-relaxed mb-4">
+                            <span class="ar-text">منصة تفاعلية آمنة للأطفال لتعلم اللغات وحل الألغاز وقراءة الكتب الممتعة مباشرة عبر روابط جوجل درايف والـ PDF!</span>
+                            <span class="en-text hidden">A safe interactive space for kids to practice languages, solve interactive quizzes, and explore Google Drive books!</span>
+                        </p>
+                    </div>
+                    <!-- Aesthetic abstract circle shapes for background design -->
+                    <div class="absolute -right-12 -bottom-12 w-48 h-48 rounded-full bg-white/5 pointer-events-none"></div>
+                    <div class="absolute -left-12 -top-12 w-48 h-48 rounded-full bg-white/5 pointer-events-none"></div>
+                </article>
+
+                <!-- 🚀 Egyptian Ministry of Education & Altfwok External Resource Directory -->
+                <section id="egyptianEducationalHub" class="bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 border border-indigo-500/15 rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+                    <div class="absolute top-3 left-3 bg-indigo-500/10 text-indigo-300 border border-indigo-500/10 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                        <span class="ar-text">دليل خارجي 🇪🇬</span>
+                        <span class="en-text hidden">External Directory 🇪🇬</span>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl sm:text-4xl">📚</span>
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">
+                                    <span class="ar-text">بوابة الكتب والمصادر التعليمية الخارجية</span>
+                                    <span class="en-text hidden">Educational Books & External Portals</span>
+                                </h3>
+                                <p class="text-xs text-indigo-300 font-semibold">
+                                    <span class="ar-text">تصفح وتحميل الملازم والكتب المدرسية الرسمية PDF مباشرة</span>
+                                    <span class="en-text hidden">Direct access to external textbooks and notes library</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 max-w-2xl">
+                            <span class="ar-text">نجمع لكم في هذا القسم باقة من أبرز الروابط والمكتبات الخارجية الموصى بها مثل بوابة المناهج الرسمية لوزارة التربية والتعليم ومنصة التفوق لمساعدتكم في الوصول إلى أحدث الكتب الدراسية والملخصات المفيدة.</span>
+                            <span class="en-text hidden">We have curated a useful directory of recommended external educational resources like the Egyptian Ministry of Education Portal and the Altfwok directory to help you find textbooks and worksheets easily.</span>
+                        </p>
+
+                        <!-- Action Link Buttons Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                            <!-- MOE Link -->
+                            <a href="https://studentbooks.moe.gov.eg" target="_blank" class="flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs rounded-xl shadow-md transition-all border border-indigo-500/30 hover:scale-102">
+                                <span>🏫</span>
+                                <span class="ar-text">الكتب المدرسية الرسمية</span>
+                                <span class="en-text hidden">Official School Textbooks</span>
+                            </a>
+                            <!-- Altfwok Web -->
+                            <a href="https://altfwok.com" target="_blank" class="flex items-center justify-center gap-2 px-4 py-3 bg-slate-800 hover:bg-slate-700 text-indigo-400 font-extrabold text-xs rounded-xl shadow-md transition-all border border-indigo-500/10 hover:scale-102">
+                                <span>🌐</span>
+                                <span class="ar-text">موقع التفوق التعليمي</span>
+                                <span class="en-text hidden">Altfwok Portal Web</span>
+                            </a>
+                            <!-- Telegram Channel -->
+                            <a href="https://t.me/altfwok" target="_blank" class="flex items-center justify-center gap-2 px-4 py-3 bg-sky-600 hover:bg-sky-700 text-white font-extrabold text-xs rounded-xl shadow-md transition-all border border-sky-500/30 hover:scale-102">
+                                <span>📢</span>
+                                <span class="ar-text">قناة التفوق تليجرام</span>
+                                <span class="en-text hidden">Telegram Community</span>
+                            </a>
+                            <!-- Advertise booking -->
+                            <a href="https://telega.io/c/altfwok" target="_blank" class="flex items-center justify-center gap-2 px-4 py-3 bg-pink-600 hover:bg-pink-700 text-white font-extrabold text-xs rounded-xl shadow-md transition-all border border-pink-500/30 hover:scale-102">
+                                <span>🎯</span>
+                                <span class="ar-text">مساحات الدعاية الخارجية</span>
+                                <span class="en-text hidden">External Ad Booking</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Game Section -->
+                <section id="gamesDashboard">
+                    <h3 class="text-lg font-extrabold text-slate-700 mb-4 flex items-center gap-2">
+                        <span>🎮</span>
+                        <span class="ar-text">الألعاب التعليمية والذهنية التفاعلية</span>
+                        <span class="en-text hidden">Educational & Brain Play Hub</span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+                        <!-- Match Letter game card -->
+                        <div id="matchGameCard" onclick="openGameModal('match')" class="game-card bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-5 text-white shadow-xs cursor-pointer border border-emerald-400/20 hover:scale-[1.03] hover:shadow-md transition-all">
+                            <span class="text-4xl block mb-3 animate-bounce">🧩</span>
+                            <h4 class="text-base font-black mb-1.5">
+                                <span class="ar-text">لعبة مطابقة الحروف</span>
+                                <span class="en-text hidden">Letter Match Arena</span>
+                            </h4>
+                            <p class="text-[11px] text-emerald-100/90 leading-relaxed">
+                                <span class="ar-text">طابق الحروف العربية والإنجليزية بالكلمات المناسبة لها لربح النجوم!</span>
+                                <span class="en-text hidden">Pair letters with corresponding words and test your skills!</span>
+                            </p>
+                        </div>
+                        
+                        <!-- Quiz Challenge card -->
+                        <div id="quizGameCard" onclick="openGameModal('quiz')" class="game-card bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl p-5 text-white shadow-xs cursor-pointer border border-amber-400/20 hover:scale-[1.03] hover:shadow-md transition-all">
+                            <span class="text-4xl block mb-3">⭐</span>
+                            <h4 class="text-base font-black mb-1.5">
+                                <span class="ar-text">تحدي النجوم السريع</span>
+                                <span class="en-text hidden">Star Quiz Master</span>
+                            </h4>
+                            <p class="text-[11px] text-amber-100/90 leading-relaxed">
+                                <span class="ar-text">أجب عن الأسئلة اللغوية الممتعة واجمع النجوم الذهبية اللامعة!</span>
+                                <span class="en-text hidden">Answer cute multi-language questions and achieve a high score!</span>
+                            </p>
+                        </div>
+
+                        <!-- Spelling Bee Arena -->
+                        <div id="spellingGameCard" onclick="openGameModal('spelling')" class="game-card bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl p-5 text-white shadow-xs cursor-pointer border border-pink-400/20 hover:scale-[1.03] hover:shadow-md transition-all">
+                            <span class="text-4xl block mb-3">🐝</span>
+                            <h4 class="text-base font-black mb-1.5">
+                                <span class="ar-text">نحلة التهجئة الذكية</span>
+                                <span class="en-text hidden">Spelling Bee Arena</span>
+                            </h4>
+                            <p class="text-[11px] text-pink-100/90 leading-relaxed">
+                                <span class="ar-text">تحدّى نحلة التهجئة، خمّن الكلمة الصحيحة المطابقة للصور واكسب نقاطاً!</span>
+                                <span class="en-text hidden">Challenge the spelling bee, guess the right word and learn spelling!</span>
+                            </p>
+                        </div>
+
+                        <!-- Memory Sound Piano -->
+                        <div id="soundGameCard" onclick="openGameModal('sound')" class="game-card bg-gradient-to-br from-violet-500 to-indigo-600 rounded-2xl p-5 text-white shadow-xs cursor-pointer border border-violet-400/20 hover:scale-[1.03] hover:shadow-md transition-all">
+                            <span class="text-4xl block mb-3">🎹</span>
+                            <h4 class="text-base font-black mb-1.5">
+                                <span class="ar-text">بيانو الذاكرة السمعية</span>
+                                <span class="en-text hidden">Memory Sound Piano</span>
+                            </h4>
+                            <p class="text-[11px] text-violet-100/90 leading-relaxed">
+                                <span class="ar-text">استمع للنغمات الموسيقية بدقة، وكررها بنفس الترتيب لتنشيط ذاكرتك!</span>
+                                <span class="en-text hidden">Listen to musical tones and repeat them in correct order!</span>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sister Platforms Promotion Banners (Official Logos Included) -->
+                <section id="promoBanners" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <!-- CodePulse -->
+                    <div id="codepulsePromo" class="bg-gradient-to-br from-slate-900 to-indigo-950 border border-indigo-500/30 rounded-3xl p-6 text-white flex flex-col justify-between gap-4 shadow-md hover:scale-[1.01] transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-0.5 bg-indigo-500/20 border border-indigo-500/30 rounded-md text-[10px] font-bold text-indigo-400 uppercase tracking-widest">
+                                    <span class="ar-text">الشريك الرسمي الوحيد</span>
+                                    <span class="en-text hidden">Exclusive Official Partner</span>
+                                </span>
+                                <span class="text-xl">⚡</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img src="https://portalcodingstudio.ai.studio/codepulse-logo.png" alt="CodePulse Logo" class="h-10 object-contain bg-white/5 p-1 rounded-lg" onerror="this.onerror=null; this.src='https://portalcodingstudio.ai.studio/icon.png';">
+                                <h4 class="text-base font-black text-white">
+                                    <span class="ar-text">منصة كود بلس البرمجية</span>
+                                    <span class="en-text hidden">CodePulse Dev Labs</span>
+                                </h4>
+                            </div>
+                            <p class="text-xs text-indigo-200/80 leading-relaxed mt-3">
+                                <span class="ar-text">المكان المثالي والموثوق للأبطال الصغار لبناء تطبيقاتهم وألعابهم وتطوير قدراتهم البرمجية بشكل احترافي ومتكامل.</span>
+                                <span class="en-text hidden">The perfect space for young heroes to build their own apps and study coding logic.</span>
+                            </p>
+                        </div>
+                        <button onclick="openExternalAdModal('codepulse')" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-black rounded-xl transition-all cursor-pointer">
+                            <span class="ar-text">اكتشف كود بلس الآن 🚀</span>
+                            <span class="en-text hidden">Explore CodePulse 🚀</span>
+                        </button>
+                    </div>
+
+                    <!-- RTC -->
+                    <div id="rtcPromo" class="bg-gradient-to-br from-slate-900 to-slate-950 border border-pink-500/20 rounded-3xl p-6 text-white flex flex-col justify-between gap-4 shadow-md hover:scale-[1.01] transition-all">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="px-2.5 py-0.5 bg-pink-500/10 border border-pink-500/20 rounded-md text-[10px] font-bold text-pink-400 uppercase tracking-widest">
+                                    <span class="ar-text">أكاديمية شقيقة</span>
+                                    <span class="en-text hidden">Sister Academy</span>
+                                </span>
+                                <span class="text-xl">🤖</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <img src="https://robotic-tc.com/newlogo.png" alt="RTC Logo" class="h-10 object-contain bg-white/95 px-2 py-0.5 rounded-lg" onerror="this.onerror=null; this.src='https://robotic-tc.com/newlogo-sm.png';">
+                                <h4 class="text-base font-black text-pink-300">
+                                    <span class="ar-text">مركـز تكنولوجيا الروبوتات (RTC)</span>
+                                    <span class="en-text hidden">Robotics Tech Center</span>
+                                </h4>
+                            </div>
+                            <p class="text-xs text-pink-200/70 leading-relaxed mt-3">
+                                <span class="ar-text">أكاديميتنا لتعلم صناعة وتصميم الروبوتات والأنظمة الذكية وإنترنت الأشياء مع أفضل المتخصصين للأطفال والشباب.</span>
+                                <span class="en-text hidden">Explore mechanical design, micro-controllers, and robotics programming hand-on at our sister center.</span>
+                            </p>
+                        </div>
+                        <button onclick="openExternalAdModal('rtc')" class="w-full py-2.5 bg-pink-600 hover:bg-pink-700 text-white text-xs font-black rounded-xl transition-all cursor-pointer">
+                            <span class="ar-text">تعرف على RTC 🤖</span>
+                            <span class="en-text hidden">Discover RTC Center 🤖</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Lessons Section -->
+                <section id="lessonsDashboard">
+                    <h3 class="text-lg font-extrabold text-slate-700 mb-4 flex items-center gap-2">
+                        <span>📚</span>
+                        <span class="ar-text">الدروس التعليمية السحابية</span>
+                        <span class="en-text hidden">Cloud Educational Lessons</span>
+                    </h3>
+                    <div id="lessonsGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                        <!-- Dynamic items rendered from Firestore -->
+                    </div>
+                </section>
+
+                <!-- Drive PDF Library -->
+                <section id="pdfLibraryDashboard">
+                    <h3 class="text-lg font-extrabold text-slate-700 mb-2 flex items-center gap-2">
+                        <span>📕</span>
+                        <span class="ar-text">مكتبة الكتب السحابية وملفات PDF</span>
+                        <span class="en-text hidden">Interactive PDF Books Shelf</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-6">
+                        <span class="ar-text">تصفح القصص الشيقة، أوراق التلوين والأنشطة المشتركة من جوجل درايف.</span>
+                        <span class="en-text hidden">Download activity worksheets and interactive kids story books seamlessly!</span>
+                    </p>
+                    <div id="booksGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                        <!-- Dynamic books from Firestore -->
+                    </div>
+                </section>
+
+                <!-- 🎯 English Level & Progress Hub (Placement Tests) -->
+                <section id="englishLevelDashboard" class="bg-gradient-to-br from-indigo-50 via-pink-50/20 to-white border border-indigo-100 rounded-3xl p-6 sm:p-8 shadow-sm flex flex-col gap-6">
+                    <div class="flex items-center gap-3 border-b border-indigo-100 pb-4">
+                        <span class="text-3xl sm:text-4xl">🎯</span>
+                        <div>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-slate-800">
+                                <span class="ar-text">تحديد مستوى اللغة الإنجليزية ومعرفة تقدّمك</span>
+                                <span class="en-text hidden">English Level & Placement Progress Hub</span>
+                            </h3>
+                            <p class="text-xs text-indigo-600 font-semibold mt-0.5">
+                                <span class="ar-text">اختبارات تفاعلية فورية ومصنفة لتحديد مستواك ومتابعة تقدّمك الدراسي!</span>
+                                <span class="en-text hidden">Interactive and classified level tests to track your learning journey!</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Built-in Level Test Container -->
+                    <div id="builtinQuizContainer" class="bg-white border-2 border-indigo-500/20 rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col gap-4">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-2">
+                            <h4 class="text-sm sm:text-base font-black text-indigo-700 flex items-center gap-2">
+                                <span>📝</span>
+                                <span class="ar-text">اختبار تحديد المستوى المدمج فوراً</span>
+                                <span class="en-text hidden">Start Built-In Placement Test</span>
+                            </h4>
+                            <span class="w-fit px-2 py-0.5 bg-pink-100 text-pink-700 text-[10px] font-bold rounded-md">
+                                <span class="ar-text">تفاعلي ⚡</span>
+                                <span class="en-text hidden">Interactive ⚡</span>
+                            </span>
+                        </div>
+
+                        <!-- Test Selection Tabs -->
+                        <div id="testTypeTabs" class="flex flex-wrap items-center gap-2 border-b border-slate-100 pb-3">
+                            <button onclick="switchTestType('english')" id="tab-btn-english" class="tab-btn px-4 py-1.5 bg-indigo-600 text-white rounded-lg text-xs font-bold transition-all cursor-pointer shadow-sm">
+                                <span class="ar-text">🇬🇧 اختبار الإنجليزية</span>
+                                <span class="en-text hidden">🇬🇧 English Test</span>
+                            </button>
+                            <button onclick="switchTestType('math')" id="tab-btn-math" class="tab-btn px-4 py-1.5 bg-slate-100 text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-xs font-bold transition-all cursor-pointer">
+                                <span class="ar-text">🔢 اختبار الرياضيات</span>
+                                <span class="en-text hidden">🔢 Math Test</span>
+                            </button>
+                            <button onclick="switchTestType('arabic')" id="tab-btn-arabic" class="tab-btn px-4 py-1.5 bg-slate-100 text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg text-xs font-bold transition-all cursor-pointer">
+                                <span class="ar-text">🇸🇦 اختبار العربية</span>
+                                <span class="en-text hidden">🇸🇦 Arabic Test</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Interactive Quiz State Router -->
+                        <div id="quizStateWrapper" class="min-h-[160px] flex flex-col justify-center">
+                            <!-- Start State -->
+                            <div id="quizStartState" class="text-center flex flex-col items-center gap-3 py-4">
+                                <p class="text-xs sm:text-sm text-slate-600 max-w-md">
+                                    <span id="quizStartDescAr" class="ar-text">مستعد لمعرفة مستواك في اللغة الإنجليزية؟ أجب على 8 أسئلة لغوية تفاعلية سريعة واحصل على تقييم وشهادة فورية!</span>
+                                    <span id="quizStartDescEn" class="en-text hidden">Ready to check your English level? Answer 8 quick interactive language questions and receive your verified certificate level!</span>
+                                </p>
+                                <button onclick="startBuiltInQuiz()" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition-all shadow-md cursor-pointer hover:scale-105">
+                                    <span class="ar-text">ابدأ الاختبار المدمج ⚡</span>
+                                    <span class="en-text hidden">Start Built-In Quiz ⚡</span>
+                                </button>
+                            </div>
+                            
+                            <!-- Question State -->
+                            <div id="quizPlayState" class="hidden flex flex-col gap-4 text-right" dir="rtl">
+                                <div class="flex justify-between items-center text-xs text-slate-400 font-semibold mb-1">
+                                    <span><span id="quizCurrentProgress">1</span>/8</span>
+                                    <span id="quizScoreTracker"><span class="ar-text">الدرجة: </span><span class="en-text hidden">Score: </span><strong id="quizCurrentScore" class="text-indigo-600">0</strong></span>
+                                </div>
+                                
+                                <div class="bg-indigo-50/40 p-4 rounded-xl border border-indigo-100 text-center">
+                                    <span id="quizQuestionEmoji" class="text-4xl block mb-2">🍎</span>
+                                    <h5 id="quizQuestionText" class="text-sm font-bold text-slate-800 leading-relaxed">What is this?</h5>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="quizAnswersGrid">
+                                    <!-- Buttons loaded dynamically from JS -->
+                                </div>
+                            </div>
+                            
+                            <!-- Results State -->
+                            <div id="quizEndState" class="hidden text-center flex flex-col items-center gap-4 py-4">
+                                <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-100 max-w-sm w-full">
+                                    <span class="text-5xl block mb-2">🏆</span>
+                                    <h5 class="text-base font-extrabold text-slate-800">
+                                        <span class="ar-text">تم إكمال الاختبار بنجاح!</span>
+                                        <span class="en-text hidden">Test Completed Successfully!</span>
+                                    </h5>
+                                    <p class="text-xs text-slate-500 mt-1">
+                                        <span class="ar-text">درجتك النهائية هي:</span>
+                                        <span class="en-text hidden">Your final score is:</span>
+                                        <strong id="quizFinalScore" class="text-lg text-emerald-600 ml-1">0</strong>/8
+                                    </p>
+                                </div>
+                                
+                                <div class="bg-gradient-to-r from-indigo-900 via-indigo-950 to-pink-900 text-white p-6 rounded-2xl max-w-sm w-full shadow-lg text-center relative overflow-hidden border border-white/10">
+                                    <div class="absolute -right-8 -top-8 w-24 h-24 rounded-full bg-white/5"></div>
+                                    <span id="quizCertType" class="text-[9px] font-bold uppercase tracking-widest bg-white/10 p-1 px-3 rounded-full">Certificate of English Proficiency</span>
+                                    <h4 class="text-xl font-black mt-3 text-white" id="quizLevelBadge">Elementary (A2)</h4>
+                                    <p class="text-[10px] text-indigo-200 mt-1" id="quizLevelDesc">Fantastic! You have a solid language foundation, keep practicing!</p>
+                                    <div class="mt-4 pt-3 border-t border-white/10 text-[8px] text-slate-400">Korasty Kids Verification</div>
+                                </div>
+                                
+                                <button onclick="resetBuiltInQuiz()" class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold rounded-lg transition-all cursor-pointer">
+                                    <span class="ar-text">إعادة المحاولة 🔄</span>
+                                    <span class="en-text hidden">Retake Test 🔄</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mt-2">
+                        <span class="ar-text">منصة كراستي تقدم لكم أيضاً باقة متكاملة من اختبارات تحديد المستوى الخارجية المعتمدة عالمياً للأطفال واليافعين بالتعاون مع كبرى المؤسسات التعليمية مثل المجلس الثقافي البريطاني (British Council) وجامعة كامبريدج.</span>
+                        <span class="en-text hidden">Korasty Platform also provides a comprehensive set of globally recognized external English placement tests for young learners and teens in partnership with premier institutes like British Council and Cambridge.</span>
+                    </p>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-2">
+                        <!-- Young Learners Placement Tests -->
+                        <div class="bg-white border border-slate-100 rounded-2xl p-5 flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-sm font-extrabold text-pink-600 mb-3 flex items-center gap-2 border-b border-pink-50 pb-2">
+                                    <span>🏆</span>
+                                    <span class="ar-text">اختبارات الأطفال وصغار السن (Kids Level)</span>
+                                    <span class="en-text hidden">Young Learners Level Tests (Kids)</span>
+                                </h4>
+                                <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                    <span class="ar-text">اختبارات قياس مستوى ممتعة وملائمة لأعمار الأطفال تضم صوراً وأسئلة مبهجة:</span>
+                                    <span class="en-text hidden">Fun, intuitive assessment tools designed for children with friendly graphics:</span>
+                                </p>
+                                <ul class="flex flex-col gap-2 mb-6">
+                                    <li>
+                                        <a href="https://www.cambridgeenglish.org/test-your-english/young-learners/" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-pink-50 border border-slate-100 hover:border-pink-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>⭐</span>
+                                            <span class="ar-text">اختبار كامبريدج للأطفال (Cambridge Kids)</span>
+                                            <span class="en-text hidden">Cambridge English: Young Learners Test</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.pearson.com/languages/educators/connected-english-learning-program/level-test-young-learners.html" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-pink-50 border border-slate-100 hover:border-pink-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>🧸</span>
+                                            <span class="ar-text">برنامج بيرسون التفاعلي (Pearson Learners)</span>
+                                            <span class="en-text hidden">Pearson Connected Level Test</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.novakidschool.com/english-level-test/" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-pink-50 border border-slate-100 hover:border-pink-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>🎮</span>
+                                            <span class="ar-text">اختبار مدرسة نوفاكيد التفاعلي (Novakid)</span>
+                                            <span class="en-text hidden">Novakid School Placement Level Test</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://flalingo.com/az/blogs/english-for-kids/free-english-level-test-for-children" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-pink-50 border border-slate-100 hover:border-pink-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>📝</span>
+                                            <span class="ar-text">اختبار فلالينجو للأطفال (Flalingo Children)</span>
+                                            <span class="en-text hidden">Flalingo Free Test for Children</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://testizer.com/tests/english-test-for-kids-online-1/" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-pink-50 border border-slate-100 hover:border-pink-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>🎯</span>
+                                            <span class="ar-text">تحدي الأطفال السريع (Testizer Kids)</span>
+                                            <span class="en-text hidden">Testizer Kids English Test Online</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://breakintoenglish.com/english-tests-for-kids/" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-pink-50 border border-slate-100 hover:border-pink-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>🚀</span>
+                                            <span class="ar-text">اختبار Break into English للأطفال</span>
+                                            <span class="en-text hidden">Break Into English Assessment</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://tv-english.club/education-en/tests-en/placement-tests-en/placement-test-kids-10-16-years-age/" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-pink-50 border border-slate-100 hover:border-pink-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>📈</span>
+                                            <span class="ar-text">اختبار تحديد مستوى اليافعين (10-16 سنة)</span>
+                                            <span class="en-text hidden">Teens Placement Test (10-16 years)</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.esleschool.com/young-learners-level-test/" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-pink-50 border border-slate-100 hover:border-pink-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>🎓</span>
+                                            <span class="ar-text">اختبار ESL للمتعلمين الصغار (ESL School)</span>
+                                            <span class="en-text hidden">ESL School Young Learners Test</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://share.google/bImlzgUGXngYaj8uB" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 border border-indigo-100/30 transition-all text-xs font-extrabold text-indigo-700 justify-between">
+                                            <span class="flex items-center gap-2">🔍 <span class="ar-text">المزيد من اختبارات تحديد مستوى الأطفال</span><span class="en-text hidden">More Kids Placement Search</span></span>
+                                            <span>➜</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- General & Advanced Level Tests -->
+                        <div class="bg-white border border-slate-100 rounded-2xl p-5 flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-sm font-extrabold text-indigo-600 mb-3 flex items-center gap-2 border-b border-indigo-50 pb-2">
+                                    <span>🎓</span>
+                                    <span class="ar-text">الاختبارات العامة وتحديد المستوى (General Level)</span>
+                                    <span class="en-text hidden">General Placement & Level Check</span>
+                                </h4>
+                                <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                                    <span class="ar-text">الاختبارات الرسمية والقياسية المعتمدة من أكبر البوابات والمنصات التعليمية:</span>
+                                    <span class="en-text hidden">Official standardized assessment tools for teens and advanced learners:</span>
+                                </p>
+                                <ul class="flex flex-col gap-2 mb-6">
+                                    <li>
+                                        <a href="https://learnenglish.britishcouncil.org/english-levels/online-english-level-test" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-100 hover:border-indigo-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>🏛️</span>
+                                            <span class="ar-text">اختبار المجلس الثقافي البريطاني الموثوق</span>
+                                            <span class="en-text hidden">British Council Online English Level Test</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://test-english.com/level-test/" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-100 hover:border-indigo-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>📋</span>
+                                            <span class="ar-text">اختبار Test English التفاعلي الفوري</span>
+                                            <span class="en-text hidden">Test English Assessment Center</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.cambridgeenglish.org/test-your-english/" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-100 hover:border-indigo-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>🏫</span>
+                                            <span class="ar-text">اختبار كامبريدج العام للغة الإنجليزية</span>
+                                            <span class="en-text hidden">Cambridge General English Level Test</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.abaenglish.com/en/english-level-test/" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-100 hover:border-indigo-200 transition-all text-xs font-bold text-slate-700">
+                                            <span>🎯</span>
+                                            <span class="ar-text">اختبار تحديد مستوى ABA English الدولي</span>
+                                            <span class="en-text hidden">ABA English Standardized Test</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://share.google/x0KVg0KlctWxyClwT" target="_blank" class="flex items-center gap-2 p-2 rounded-xl bg-pink-50 hover:bg-pink-100 border border-pink-100/30 transition-all text-xs font-extrabold text-pink-700 justify-between">
+                                            <span class="flex items-center gap-2">🔍 <span class="ar-text">بحث جوجل لتحديد مستوى الإنجليزية</span><span class="en-text hidden">Google Placement Test Collection</span></span>
+                                            <span>➜</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <!-- Video walkthrough section -->
+                                <div class="bg-indigo-50/50 p-4 rounded-xl border border-indigo-100/50 flex flex-col gap-2">
+                                    <h5 class="text-[11px] font-bold text-indigo-700 uppercase tracking-wide flex items-center gap-1">
+                                        <span>📺</span>
+                                        <span class="ar-text">مرشد ودليل بالفيديو للأطفال</span>
+                                        <span class="en-text hidden">Video Walkthrough for Kids</span>
+                                    </h5>
+                                    <p class="text-[10px] text-slate-500 leading-relaxed">
+                                        <span class="ar-text">شاهد هذا الفيديو لتعرف كيف تتقدم للاختبار التفاعلي المخصص للمتعلمين الصغار:</span>
+                                        <span class="en-text hidden">Watch this friendly video guide explaining kids English assessment levels:</span>
+                                    </p>
+                                    <div class="flex gap-2 mt-1">
+                                        <a href="https://youtu.be/_Xk3qmZ3lxg?si=oeosllM2nV-nxYDd" target="_blank" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-[10px] font-bold text-white rounded-lg transition-colors inline-flex items-center gap-1">
+                                            <span>▶️</span>
+                                            <span class="ar-text">مشاهدة الفيديو المباشر</span>
+                                            <span class="en-text hidden">Watch Video</span>
+                                        </a>
+                                        <a href="https://share.google/TO2QbxvVi9e1OSGWO" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-[10px] font-bold text-white rounded-lg transition-colors inline-flex items-center gap-1">
+                                            <span>🔍</span>
+                                            <span class="ar-text">تصفح شروحات الفيديو</span>
+                                            <span class="en-text hidden">Browse Guides</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Active Lesson Player Modal -->
+    <div id="lessonModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" class="modal fixed inset-0 hidden items-center justify-center p-4 bg-slate-900/60 z-[200]">
+        <div class="modal-content bg-white w-full max-w-4xl max-h-[92vh] rounded-3xl overflow-y-auto shadow-2xl flex flex-col">
+            <div class="modal-header p-6 bg-gradient-to-r from-indigo-600 to-pink-600 text-white flex justify-between items-center gap-4">
+                <h2 id="modalTitle" class="text-lg sm:text-xl font-extrabold truncate">اسم الدرس</h2>
+                <button onclick="closeLessonModal()" aria-label="إغلاق نافذة الدرس" class="close-btn text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-xl text-base font-bold transition-all cursor-pointer">✕</button>
+            </div>
+            
+            <div class="modal-body p-6 flex flex-col gap-6">
+                <!-- Video Viewer -->
+                <div id="modalVideoContainer"></div>
+
+                <!-- Content Area -->
+                <article id="modalContentBody" class="prose max-w-none text-slate-700 text-sm leading-relaxed"></article>
+
+                <!-- Comments & Discussion Area -->
+                <section id="commentsSection" class="border-t border-gray-100 pt-6 mt-4">
+                    <h3 class="text-lg font-extrabold text-slate-800 mb-2 flex items-center gap-1.5">
+                        <span>❓</span>
+                        <span class="ar-text">أسئلة واستفسارات الطلاب</span>
+                        <span class="en-text hidden">Student Question Forum</span>
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-4">
+                        <span class="ar-text">هل لديك سؤال حول هذا الدرس؟ اطرح سؤالك ليجيب عليه زملاؤك أو المدرس!</span>
+                        <span class="en-text hidden">Do you have a question? Submit it below to get direct feedback!</span>
+                    </p>
+
+                    <!-- Ask form -->
+                    <div class="bg-slate-50 border border-slate-100 p-5 rounded-2xl mb-6">
+                        <form id="commentForm" onsubmit="submitComment(event)" class="flex flex-col gap-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="commenterName" class="text-xs font-bold text-slate-600">
+                                        <span class="ar-text">اسمك الكريم 👶</span>
+                                        <span class="en-text hidden">Your Nice Name 👶</span>
+                                    </label>
+                                    <input type="text" id="commenterName" required class="px-4 py-2 bg-white border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm font-semibold text-slate-700" placeholder="مثال: يوسف البطل">
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label for="commentText" class="text-xs font-bold text-slate-600">
+                                    <span class="ar-text">سؤالك أو استفسارك 💬</span>
+                                    <span class="en-text hidden">Your Question 💬</span>
+                                </label>
+                                <textarea id="commentText" required rows="3" class="px-4 py-3 bg-white border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm text-slate-700 resize-none" placeholder="اكتب سؤالك بوضوح هنا..."></textarea>
+                            </div>
+                            <button type="submit" class="self-end px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold rounded-xl transition-all cursor-pointer">
+                                <span class="ar-text">إرسال السؤال سحابياً</span>
+                                <span class="en-text hidden">Submit Cloud Question</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- List of questions -->
+                    <div id="commentsListContainer" class="flex flex-col gap-4">
+                        <!-- Questions mapped in script -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Game Modal -->
+    <div id="gameModal" role="dialog" aria-modal="true" aria-labelledby="gameModalTitle" class="modal fixed inset-0 hidden items-center justify-center p-4 bg-slate-900/60 z-[200]">
+        <div class="modal-content bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+            <div class="modal-header p-5 bg-gradient-to-r from-emerald-500 to-teal-600 text-white flex justify-between items-center">
+                <h2 id="gameModalTitle" class="text-lg font-extrabold flex items-center gap-1.5">الألعاب التعليمية</h2>
+                <button onclick="closeGameModal()" aria-label="إغلاق لعبة التحدي" class="close-btn text-white bg-white/10 hover:bg-white/20 p-2 rounded-lg text-sm transition-all cursor-pointer">✕</button>
+            </div>
+            <div id="gameModalBody" class="p-6">
+                <!-- Dynamic games injected -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Partner / Promo Modal -->
+    <div id="externalAdModal" role="dialog" aria-modal="true" aria-labelledby="adModalTitle" class="modal fixed inset-0 hidden items-center justify-center p-4 bg-slate-900/60 z-[200]">
+        <div class="modal-content bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+            <div id="adModalHeaderBg" class="p-6 flex justify-between items-center text-white">
+                <h2 id="adModalTitle" class="text-lg font-extrabold">منصة شريكة</h2>
+                <button onclick="closeExternalAdModal()" aria-label="إغلاق نافذة العرض الإعلاني" class="close-btn text-white bg-white/10 hover:bg-white/20 p-2 rounded-lg text-sm transition-all cursor-pointer">✕</button>
+            </div>
+            <div id="adModalContentBody" class="p-6">
+                <!-- Promo body -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Protected Admin Dashboard Modal -->
+    <div id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminModalHeaderTitle" class="modal fixed inset-0 hidden items-center justify-center p-4 bg-slate-900/65 z-[200]">
+        <div class="modal-content bg-white w-full max-w-3xl max-h-[92vh] rounded-3xl overflow-y-auto shadow-2xl flex flex-col">
+            <div class="modal-header p-6 bg-slate-900 text-white flex justify-between items-center">
+                <h2 id="adminModalHeaderTitle" class="text-lg font-extrabold">
+                    <span class="ar-text">لوحة التحكم المشرفة</span>
+                    <span class="en-text hidden">Administrator Dashboard</span>
+                </h2>
+                <button onclick="closeAdminModal()" aria-label="إغلاق لوحة التحكم" class="close-btn text-white bg-white/10 hover:bg-white/20 p-2.5 rounded-xl text-base font-bold transition-all cursor-pointer">✕</button>
+            </div>
+            
+            <div class="p-6">
+                <div class="flex border-b border-gray-100 mb-6 gap-2">
+                    <button onclick="switchAdminTab(0)" class="admin-tab active px-5 py-2.5 border-b-2 border-indigo-600 text-indigo-600 font-bold text-sm cursor-pointer">
+                        <span class="ar-text">نشر درس جديد</span>
+                        <span class="en-text hidden">Add Cloud Lesson</span>
+                    </button>
+                    <button onclick="switchAdminTab(1)" class="admin-tab px-5 py-2.5 border-b-2 border-transparent text-slate-500 hover:text-indigo-600 font-semibold text-sm cursor-pointer">
+                        <span class="ar-text">مكتبة PDF وإدارة المحتوى</span>
+                        <span class="en-text hidden">PDF Library & Management</span>
+                    </button>
+                </div>
+
+                <!-- Add Lesson -->
+                <div id="tab0" class="admin-content active flex flex-col gap-4">
+                    <h3 class="text-base font-extrabold text-indigo-900">
+                        <span class="ar-text">نشر درس لغوي جديد سحابياً</span>
+                        <span class="en-text hidden">Publish a New Cloud Lesson</span>
+                    </h3>
+                    <form onsubmit="handleAddLesson(event)" class="flex flex-col gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-1.5">
+                                <label for="lessonTitleInput" class="text-xs font-bold text-slate-600">عنوان الدرس</label>
+                                <input type="text" id="lessonTitleInput" required class="px-4 py-2 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm font-semibold" placeholder="مثال: تعلم الحروف العربية">
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label for="lessonIconInput" class="text-xs font-bold text-slate-600">رمز تعبيري (إيموجي)</label>
+                                <input type="text" id="lessonIconInput" value="📖" required class="px-4 py-2 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm font-semibold">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label for="lessonVideoInput" class="text-xs font-bold text-slate-600">رابط فيديو Google Drive أو YouTube</label>
+                            <input type="text" id="lessonVideoInput" class="px-4 py-2 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm font-semibold" placeholder="https://drive.google.com/file/d/.../preview">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="flex flex-col gap-1.5">
+                                <label for="lessonGradeInput" class="text-xs font-bold text-slate-600">الصف الدراسي</label>
+                                <select id="lessonGradeInput" class="px-4 py-2 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm font-semibold bg-white">
+                                    <option value="الأول الابتدائي">الأول الابتدائي</option>
+                                    <option value="الثاني الابتدائي">الثاني الابتدائي</option>
+                                    <option value="الثالث الابتدائي">الثالث الابتدائي</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col gap-1.5">
+                                <label for="lessonSubjectInput" class="text-xs font-bold text-slate-600">اللغة / المادة</label>
+                                <select id="lessonSubjectInput" class="px-4 py-2 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm font-semibold bg-white">
+                                    <option value="عربي">اللغة العربية (عربي)</option>
+                                    <option value="إنجليزي">اللغة الإنجليزية (إنجليزي)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label for="lessonDescInput" class="text-xs font-bold text-slate-600">الوصف الموجز</label>
+                            <textarea id="lessonDescInput" required rows="2" class="px-4 py-2 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm" placeholder="وصف موجز يظهر للطلاب في الصفحة الرئيسية..."></textarea>
+                        </div>
+
+                        <div class="flex flex-col gap-1.5">
+                            <label for="lessonContentInput" class="text-xs font-bold text-slate-600">محتوى الدرس المفصل (HTML مدعوم)</label>
+                            <textarea id="lessonContentInput" required rows="5" class="px-4 py-2 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-sm" placeholder="اكتب الشرح ومفردات الدرس والأمثلة بالكامل هنا..."></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm rounded-xl shadow-sm transition-all cursor-pointer">
+                            نشر الدرس السحابي فوراً 🚀
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Admin Tab 1 -->
+                <div id="tab1" class="admin-content hidden flex flex-col gap-8">
+                    <!-- Published items table list -->
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-600 mb-3">الدروس الحالية المنشورة سحابياً:</h4>
+                        <div id="adminLessonsList"></div>
+                    </div>
+
+                    <!-- Add PDF Book -->
+                    <div class="border-t border-gray-100 pt-6">
+                        <h3 class="text-base font-extrabold text-pink-600 mb-4">إضافة ملف PDF أو ورقة عمل جديدة</h3>
+                        <form onsubmit="handleAddBook(event)" class="flex flex-col gap-4 bg-slate-50 border border-slate-100 p-5 rounded-2xl">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="bookTitleInput" class="text-xs font-bold text-slate-600">عنوان الكتاب / ورقة العمل</label>
+                                    <input type="text" id="bookTitleInput" required class="px-4 py-2 border border-slate-200 focus:border-indigo-500 rounded-xl bg-white outline-none text-sm font-semibold" placeholder="كتاب تمارين الحروف">
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="bookUrlInput" class="text-xs font-bold text-slate-600">رابط ملف PDF من Google Drive</label>
+                                    <input type="text" id="bookUrlInput" required class="px-4 py-2 border border-slate-200 focus:border-indigo-500 rounded-xl bg-white outline-none text-sm font-semibold" placeholder="https://drive.google.com/file/d/.../preview">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="bookGradeInput" class="text-xs font-bold text-slate-600">الصف الدراسي</label>
+                                    <select id="bookGradeInput" class="px-4 py-2 border border-slate-200 focus:border-indigo-500 rounded-xl bg-white outline-none text-sm font-semibold">
+                                        <option value="جميع الصفوف">جميع الصفوف</option>
+                                        <option value="الأول الابتدائي">الأول الابتدائي</option>
+                                        <option value="الثاني الابتدائي">الثاني الابتدائي</option>
+                                        <option value="الثالث الابتدائي">الثالث الابتدائي</option>
+                                    </select>
+                                </div>
+                                <div class="flex flex-col gap-1.5">
+                                    <label for="bookIconInput" class="text-xs font-bold text-slate-600">رمز الكتاب التعبيري (إيموجي)</label>
+                                    <input type="text" id="bookIconInput" value="📕" required class="px-4 py-2 border border-slate-200 focus:border-indigo-500 rounded-xl bg-white outline-none text-sm font-semibold">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full py-3 bg-pink-600 hover:bg-pink-700 text-white font-extrabold text-sm rounded-xl shadow-sm transition-all cursor-pointer">
+                                نشر كتاب الـ PDF سحابياً 📚
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Translate Hidden Widget Container -->
+    <div id="google_translate_element" style="display: none !important;"></div>
+
+    <!-- Admin Password Verification Modal (Solves Sandboxed IFrame Prompt Blocks) -->
+    <div id="passwordModal" role="dialog" aria-modal="true" aria-labelledby="passwordModalTitle" class="modal fixed inset-0 hidden items-center justify-center p-4 bg-slate-900/60 z-[210]">
+        <div class="modal-content bg-white w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl flex flex-col p-6 border border-slate-100">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="passwordModalTitle" class="text-lg font-extrabold text-slate-800 flex items-center gap-2">
+                    🔑 <span class="ar-text">لوحة المشرف</span><span class="en-text hidden">Admin Dashboard</span>
+                </h2>
+                <button onclick="closePasswordModal()" aria-label="إغلاق التحقق" class="text-slate-400 hover:text-slate-600 font-bold p-1">✕</button>
+            </div>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+                <span class="ar-text">أدخل كلمة مرور المشرف لتسجيل الدخول الآمن:</span>
+                <span class="en-text hidden">Enter the admin password for secure access:</span>
+            </p>
+            <div class="flex flex-col gap-3">
+                <input type="password" id="adminPasswordInput" class="px-4 py-2.5 border border-slate-200 focus:border-indigo-500 rounded-xl outline-none text-center font-bold tracking-widest text-lg" placeholder="••••">
+                <button onclick="validateAdminPassword()" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-sm rounded-xl transition-all shadow-md">
+                    <span class="ar-text">تأكيد الدخول</span>
+                    <span class="en-text hidden">Verify Password</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Translate Script Loader -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ar',
+                includedLanguages: 'ar,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Custom Floating Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Load Module Controller -->
+    <script type="module" src="/script.js"></script>
+</body>
+</html>

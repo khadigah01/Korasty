@@ -1,0 +1,6 @@
+{
+  "name": "Korasty | كراستي",
+  "description": "منصة تعليمية تفاعلية للأطفال لتعلم اللغات وحل الألعاب التعليمية وقراءة الكتب والملفات الدراسية.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

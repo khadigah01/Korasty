@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+/* Design System and Typography Pairings */
+:root {
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4f46e5;
+  --secondary: #ec4899;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --bg-dark: #0f172a;
+  --bg-light: #f8fafc;
+  --text-dark: #1e293b;
+  --text-light: #64748b;
+  --border: #e2e8f0;
+  --card: #ffffff;
+}
+
+body {
+  font-family: 'Cairo', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+  color: var(--text-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* RTL / LTR Language Specific Adjustments */
+html[data-lang="en"] {
+  direction: ltr;
+}
+html[data-lang="ar"] {
+  direction: rtl;
+}
+
+/* Aesthetic improvements for active states and cards with glorious interactive hover glow effects */
+button, 
+.lesson-card, 
+.game-card, 
+input, 
+textarea, 
+select, 
+.class-btn,
+.subject-btn,
+.book-item-wrapper {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Glowing effects on hover */
+button:hover,
+[role="button"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 16px rgba(99, 102, 241, 0.55);
+}
+
+#adminPromptBtn:hover {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.7) !important;
+  transform: scale(1.03) translateY(-1px);
+}
+
+#langToggleBtn:hover {
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.4) !important;
+  transform: translateY(-1px);
+}
+
+.lesson-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.25), 0 0 22px rgba(99, 102, 241, 0.45);
+  border-color: rgba(99, 102, 241, 0.35) !important;
+}
+
+.game-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.3), 0 0 22px rgba(16, 185, 129, 0.5);
+  border-color: rgba(16, 185, 129, 0.35) !important;
+}
+
+input:focus, 
+textarea:focus, 
+select:focus {
+  box-shadow: 0 0 14px rgba(99, 102, 241, 0.35) !important;
+  border-color: #6366f1 !important;
+}
+
+.class-btn:hover {
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.45);
+  transform: translateY(-1px);
+}
+
+.subject-btn:hover {
+  box-shadow: 0 0 12px rgba(236, 72, 153, 0.45);
+  transform: translateY(-1px);
+}
+
+/* Universal Hover Glow Rule for Everything */
+a:hover,
+.partner-logo-card:hover,
+.certificate-badge:hover,
+.book-item-wrapper:hover,
+.tab-btn:hover,
+.level-badge:hover,
+.nav-pill:hover,
+.accent-card:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.65) !important;
+  border-color: rgba(139, 92, 246, 0.4) !important;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hide Google Translate top bar frame */
+.goog-te-banner-frame.skiptranslate, 
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
+.goog-logo-link {
+  display: none !important;
+}
+.goog-te-gadget {
+  color: transparent !important;
+  font-size: 0px !important;
+}
+.goog-te-gadget .goog-te-combo {
+  display: none !important;
+}
+
+/* Modals */
+.modal {
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.modal.active {
+  display: flex;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Toasts and Notifications */
+.toast-container {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.toast {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--primary);
+  padding: 1rem 1.5rem;
+  min-width: 300px;
+  max-width: 420px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transform: translateX(120%);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast.success {
+  border-left-color: var(--success);
+}
+
+.toast.error {
+  border-left-color: var(--danger);
+}
+
+/* Language selector animation */
+.lang-toggle {
+  position: relative;
+  overflow: hidden;
+}
+
+.lang-toggle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.lang-toggle:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}

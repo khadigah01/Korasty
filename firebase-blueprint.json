@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "Lesson": {
+      "title": "Lesson",
+      "description": "Educational lesson for kids",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 100 },
+        "content": { "type": "string", "maxLength": 2000 },
+        "grade": { "type": "string", "maxLength": 50 },
+        "icon": { "type": "string", "maxLength": 10 },
+        "createdAt": { "type": "number" },
+        "likes": { "type": "number" }
+      },
+      "required": ["title", "createdAt"]
+    },
+    "Book": {
+      "title": "Book",
+      "description": "Suggested storybook or guide URL",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 100 },
+        "url": { "type": "string", "maxLength": 500 },
+        "grade": { "type": "string", "maxLength": 50 },
+        "icon": { "type": "string", "maxLength": 10 },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["title", "url", "createdAt"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "Public discussion comments on a lesson",
+      "type": "object",
+      "properties": {
+        "lessonId": { "type": "string", "maxLength": 128 },
+        "userName": { "type": "string", "maxLength": 50 },
+        "text": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "number" },
+        "userId": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["lessonId", "userName", "text", "createdAt", "userId"]
+    }
+  },
+  "firestore": {
+    "korasty_lessons/{lessonId}": {
+      "schema": "Lesson",
+      "description": "Lessons collection"
+    },
+    "korasty_books/{bookId}": {
+      "schema": "Book",
+      "description": "Books collection"
+    },
+    "korasty_comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Comments collection"
+    }
+  }
+}
